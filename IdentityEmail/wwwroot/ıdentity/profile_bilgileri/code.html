@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Information | SaaSify Enterprise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#f5eaf7",
+                    "on-surface-variant": "#4c4353",
+                    "on-surface": "#1f1a22",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "secondary-container": "#fe4ed7",
+                    "surface-variant": "#e9dfec",
+                    "secondary-fixed-dim": "#ffade3",
+                    "on-tertiary-container": "#fffbff",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#745800",
+                    "primary-container": "#994ee0",
+                    "on-tertiary": "#ffffff",
+                    "primary-fixed": "#f0dbff",
+                    "secondary": "#af0093",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e9dfec",
+                    "surface": "#fff7fe",
+                    "on-primary-fixed": "#2c0050",
+                    "on-primary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "background": "#fff7fe",
+                    "surface-bright": "#fff7fe",
+                    "on-background": "#1f1a22",
+                    "inverse-surface": "#342e38",
+                    "tertiary-fixed": "#ffdf99",
+                    "on-secondary-fixed": "#3a0030",
+                    "on-secondary-container": "#5f004f",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#ddb7ff",
+                    "surface-container-high": "#efe5f2",
+                    "error-container": "#ffdad6",
+                    "tertiary-container": "#936f00",
+                    "primary": "#7f30c5",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#7e7384",
+                    "on-secondary-fixed-variant": "#860070",
+                    "outline-variant": "#cfc2d5",
+                    "surface-container-low": "#fbf0fd",
+                    "on-tertiary-fixed": "#251a00",
+                    "tertiary-fixed-dim": "#f1c042",
+                    "secondary-fixed": "#ffd8ee",
+                    "surface-dim": "#e1d7e3",
+                    "inverse-on-surface": "#f8edfa",
+                    "surface-tint": "#8134c8",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#680bae"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "xl": "64px",
+                    "sm": "12px",
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "base": "8px",
+                    "md": "24px",
+                    "xs": "4px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f5f7fb;
+            font-family: 'Inter', sans-serif;
+            color: #1f1a22;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .card-shadow {
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #7f30c5 0%, #af0093 100%);
+        }
+        .primary-gradient-text {
+            background: linear-gradient(135deg, #7f30c5 0%, #af0093 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .toggle-dot {
+            transition: all 0.3s ease-in-out;
+        }
+        input:checked ~ .toggle-dot {
+            transform: translateX(100%);
+            background-color: white;
+        }
+        input:checked ~ .toggle-bg {
+            background: linear-gradient(135deg, #7f30c5 0%, #af0093 100%);
+        }
+        .tab-active {
+            color: #7f30c5;
+            position: relative;
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            background: #7f30c5;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-white/70 dark:bg-surface/70 backdrop-blur-xl border-b border-white/50 dark:border-outline-variant/30 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] sticky top-0 z-50">
+<div class="flex justify-between items-center h-[72px] px-md max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-lg">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">SaaSify</span>
+<nav class="hidden md:flex items-center gap-md">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Ana Sayfa</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Analytics</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Messages</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Team</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim font-bold relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-sm">
+<div class="hidden sm:flex items-center gap-xs mr-md">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">help</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">apps</span></button>
+</div>
+<button class="bg-primary text-on-primary px-md py-xs rounded-xl font-label-md text-label-md active:scale-95 transition-transform">New Project</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User profile photo" data-alt="A professional high-resolution close-up portrait of a modern executive with a friendly expression. The lighting is soft and cinematic, highlighting clear skin and sharp features. The background is a blurred, high-end office setting with soft lavender and purple highlights, maintaining a premium SaaS brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaojdWe0rDRBVzRkfhvqxyyp7_NE8_-ZpKUXmdkShjLZgmMs4if4YgeK_re2i1cj76VIz3eDKFWPtSFg6WHi7o4TgkHsDm-WIpXLJJsoBmaOT7ad9nlvoJQvrcu3d55dXZhDwke3XUCiNhk1Pfqiz1vyYcdbT_eNr271ffNGYyAm4p6lVsvm0XTQ-sqUUeuCL15_CCBZ_T5fasauZ0CqqwmCmU5tj_NnjVFfwLMsOtIir8f2hAQuoBTPJ8kG0NUMA9ejYF2GSpymk"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-md py-lg">
+<!-- Top Section / Breadcrumbs -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md">
+<div>
+<nav class="flex items-center gap-xs text-on-surface-variant mb-xs">
+<a class="font-label-md text-label-md hover:text-primary transition-colors" href="#">Ana Sayfa</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-label-md text-label-md text-primary font-bold">Profile Information</span>
+</nav>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Account Settings</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-md py-sm bg-white rounded-xl card-shadow text-on-surface-variant hover:text-primary transition-all active:scale-95" onclick="window.location.reload()">
+<span class="material-symbols-outlined text-md">sync</span>
+<span class="font-label-md text-label-md">Profile Sync</span>
+</button>
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container-low border border-outline-variant/30 rounded-xl text-on-surface-variant hover:bg-white transition-all active:scale-95">
+<span class="material-symbols-outlined text-md">arrow_back</span>
+<span class="font-label-md text-label-md">Ana Sayfaya Dön</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Profile Card -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-white rounded-xl card-shadow overflow-hidden group">
+<!-- Banner -->
+<div class="h-32 primary-gradient opacity-90 relative">
+<div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+</div>
+<!-- Avatar Area -->
+<div class="px-md -mt-16 mb-md text-center">
+<div class="relative inline-block">
+<div class="w-32 h-32 rounded-full border-4 border-white overflow-hidden shadow-lg relative">
+<img class="w-full h-full object-cover" data-alt="A detailed, close-up portrait of a male professional named Alex Thompson, appearing confident and approachable. He has well-groomed features and is wearing a sleek, dark charcoal blazer. The image is set against a soft, out-of-focus tech environment with subtle purple lens flares and minimalist glass surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkR0oEs7881ZqhEk9l_FLHfEB6-3kxoNmxUKaZV2ZGlVpWavwoM0Gis7L0rt6gKWfqf7ZDp-WsYreDbFgC-0uyZOqurPOopMxtavZqbXvKo7kYpMa6gXLqsEvQUj9ExE3UrF9NKh44bOYdFZX0wbV46_76RLbcQnR5APX-d1qVNprsycvqW0bbBsKDZ-7DpSMRtcAqEtoj4cMuV_ffIarO13O8aAS1nFDa7ajM-oN_hfjvxvPnDEPCnavBp6VjutQmKO2bjO8aUc4"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white text-3xl">edit</span>
+</div>
+</div>
+<div class="absolute bottom-1 right-1 w-6 h-6 bg-green-500 border-4 border-white rounded-full"></div>
+</div>
+<h2 class="font-headline-md text-headline-md mt-sm text-on-surface">Alex Thompson</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Senior Product Lead</p>
+</div>
+<!-- Stats -->
+<div class="flex border-y border-outline-variant/10 py-md mb-md">
+<div class="flex-1 text-center border-r border-outline-variant/10">
+<p class="font-headline-md text-headline-md text-primary">24</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Projects</p>
+</div>
+<div class="flex-1 text-center">
+<p class="font-headline-md text-headline-md text-primary">118</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Collabs</p>
+</div>
+</div>
+<!-- Contact Info -->
+<div class="px-md pb-lg flex flex-col gap-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">Email</span>
+<span class="font-body-md text-body-md font-semibold">alex.t@saasify.io</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">Phone</span>
+<span class="font-body-md text-body-md font-semibold">+1 (555) 012-3456</span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant">Location</span>
+<span class="font-body-md text-body-md font-semibold">San Francisco, CA</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Card: Identity Badge -->
+<div class="bg-primary/5 rounded-xl p-md flex items-center gap-md border border-primary/10">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary font-bold">Verified Account</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Your identity has been confirmed by Enterprise Security.</p>
+</div>
+</div>
+</div>
+<!-- Right Content Area -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Tabbed Interface -->
+<div class="bg-white rounded-xl card-shadow overflow-hidden min-h-[600px]">
+<div class="flex px-md border-b border-outline-variant/10">
+<button class="py-md px-md font-label-md text-label-md tab-active transition-all" id="btn-profile" onclick="switchTab('profile')">PROFILE</button>
+<button class="py-md px-md font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" id="btn-settings" onclick="switchTab('settings')">SETTINGS</button>
+<button class="py-md px-md font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" id="btn-password" onclick="switchTab('password')">CHANGE PASSWORD</button>
+</div>
+<!-- Profile Tab Content -->
+<div class="p-lg block" id="tab-profile">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Full Name</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md" type="text" value="Alex Thompson"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Phone Number</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md" type="text" value="+1 (555) 012-3456"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Email Address</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md" type="email" value="alex.t@saasify.io"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">City</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md" type="text" value="San Francisco"/>
+</div>
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Job Position</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md" type="text" value="Senior Product Lead"/>
+</div>
+<div class="flex flex-col gap-xs md:col-span-2">
+<label class="font-label-md text-label-md text-on-surface-variant">Biography</label>
+<textarea class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md resize-none" rows="5">Alex is a seasoned Product Leader with over 10 years of experience in scaling enterprise communication platforms. Currently heading the core messaging experience at SaaSify, he focuses on frictionless user flows and collaborative innovation. Passionate about design-led engineering and glassmorphic UI trends.</textarea>
+</div>
+</div>
+<div class="mt-lg flex justify-end gap-sm">
+<button class="px-lg py-sm rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors">Discard</button>
+<button class="px-lg py-sm primary-gradient text-white rounded-xl font-label-md text-label-md shadow-lg shadow-primary/20 active:scale-95 transition-transform">Save Changes</button>
+</div>
+</div>
+<!-- Settings Tab Content -->
+<div class="p-lg hidden" id="tab-settings">
+<div class="flex flex-col gap-lg">
+<div>
+<h3 class="font-title-lg text-title-lg mb-md text-on-surface">General Preferences</h3>
+<div class="flex flex-col gap-md">
+<div class="flex items-center justify-between p-md rounded-xl bg-surface-container-low border border-outline-variant/10">
+<div>
+<p class="font-body-lg text-body-lg font-semibold">Email Notifications</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Receive updates about project activity.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-6 bg-outline-variant rounded-full peer-checked:bg-primary transition-all toggle-bg"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all toggle-dot"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-md rounded-xl bg-surface-container-low border border-outline-variant/10">
+<div>
+<p class="font-body-lg text-body-lg font-semibold">Dark Mode</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Switch to the dark side of the UI.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-6 bg-outline-variant rounded-full peer-checked:bg-primary transition-all toggle-bg"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all toggle-dot"></div>
+</label>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg mb-md text-on-surface">Security Preferences</h3>
+<div class="flex flex-col gap-md">
+<div class="flex items-center justify-between p-md rounded-xl bg-surface-container-low border border-outline-variant/10">
+<div>
+<p class="font-body-lg text-body-lg font-semibold">Two-Factor Authentication</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Enhance account security via mobile app.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-12 h-6 bg-outline-variant rounded-full peer-checked:bg-primary transition-all toggle-bg"></div>
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-all toggle-dot"></div>
+</label>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Language Selection</label>
+<select class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all font-body-md">
+<option>English (United States)</option>
+<option>German (Deutsch)</option>
+<option>French (Français)</option>
+<option>Japanese (日本語)</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Change Password Tab Content -->
+<div class="p-lg hidden" id="tab-password">
+<div class="max-w-md mx-auto py-md">
+<h3 class="font-headline-md text-headline-md mb-lg text-center">Update Security</h3>
+<div class="flex flex-col gap-lg">
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Current Password</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="••••••••••••" type="password"/>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">New Password</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="••••••••••••" type="password"/>
+<div class="mt-xs">
+<div class="h-1.5 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full w-2/3 primary-gradient"></div>
+</div>
+<p class="font-label-md text-label-md text-primary mt-xs">Strength: Strong</p>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Confirm New Password</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-sm focus:ring-2 focus:ring-primary focus:bg-white transition-all" placeholder="••••••••••••" type="password"/>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl border border-outline-variant/20">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase mb-xs">Security Recommendations</h4>
+<ul class="flex flex-col gap-xs">
+<li class="flex items-center gap-xs text-on-surface-variant text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                                            At least 12 characters long
+                                        </li>
+<li class="flex items-center gap-xs text-on-surface-variant text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span>
+                                            Include numbers and special symbols
+                                        </li>
+<li class="flex items-center gap-xs text-on-surface-variant text-[13px]">
+<span class="material-symbols-outlined text-[16px] text-outline">circle</span>
+                                            Avoid common words or patterns
+                                        </li>
+</ul>
+</div>
+<button class="w-full py-md primary-gradient text-white rounded-xl font-title-lg shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">Update Password</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface-dim border-t border-outline-variant/20 mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center py-md px-md max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-sm mb-md md:mb-0">
+<span class="font-title-lg text-title-lg font-bold text-on-surface dark:text-on-surface-variant">SaaSify</span>
+<p class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant">© 2024 SaaSify Enterprise. All rights reserved.</p>
+</div>
+<div class="flex gap-md">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all opacity-80 hover:opacity-100" href="#">Security</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-outline-variant hover:text-secondary dark:hover:text-secondary-fixed transition-all opacity-80 hover:opacity-100" href="#">Status</a>
+</div>
+</div>
+</footer>
+<script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            document.getElementById('tab-profile').classList.add('hidden');
+            document.getElementById('tab-settings').classList.add('hidden');
+            document.getElementById('tab-password').classList.add('hidden');
+            
+            // Show selected tab content
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-' + tabId).classList.add('block');
+
+            // Reset tab button styles
+            const buttons = ['profile', 'settings', 'password'];
+            buttons.forEach(btn => {
+                const element = document.getElementById('btn-' + btn);
+                element.classList.remove('tab-active', 'text-primary');
+                element.classList.add('text-on-surface-variant');
+            });
+
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.add('tab-active', 'text-primary');
+            activeBtn.classList.remove('text-on-surface-variant');
+        }
+        
+        // Initial tab interaction
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                console.log('Setting updated: ', e.target.checked);
+            });
+        });
+    </script>
+</body></html>

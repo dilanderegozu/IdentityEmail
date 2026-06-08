@@ -1,0 +1,148 @@
+﻿@model IdentityEmail.Dtos.CreateUserRegisterDto;
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+@await Component.InvokeAsync("_DefaultHeadComponentPartial")
+<body class="bg-background text-on-background min-h-screen selection:bg-primary-fixed-dim selection:text-on-primary-fixed">
+<main class="min-h-screen flex flex-col md:flex-row overflow-hidden">
+<!-- Left Side: Visual Experience -->
+<section class="hidden md:flex md:w-1/2 gradient-bg relative items-center justify-center p-xl overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+<div class="relative z-10 text-white max-w-lg">
+<div class="mb-lg floating">
+<div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/30 shadow-2xl">
+<span class="material-symbols-outlined text-[48px]" data-icon="cloud_done" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+</div>
+                <h1 class="font-display-lg text-display-lg mb-md leading-tight">Güçlü ve Modern E-posta Platformu</h1>
+                <p class="font-body-lg text-body-lg text-white/90 mb-xl">Güçlü altyapımız ile tüm e-posta süreçlerini hızlı ve güvenli şekilde yönetin.</p>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-md glass-card rounded-xl border-white/20 bg-white/10">
+<span class="material-symbols-outlined block mb-xs" data-icon="bolt">bolt</span>
+                        <h4 class="font-title-lg text-title-lg font-bold">99.9% Kesintisiz Hizmet</h4>
+                        <p class="font-body-md text-body-md opacity-80">Kurumsal seviyede yüksek performans.</p>
+</div>
+<div class="p-md glass-card rounded-xl border-white/20 bg-white/10">
+<span class="material-symbols-outlined block mb-xs" data-icon="security">security</span>
+                        <h4 class="font-title-lg text-title-lg font-bold">Üst Düzey Güvenlik</h4>
+                        <p class="font-body-md text-body-md opacity-80">Modern güvenlik standartlarıyla korunur.</p>
+</div>
+</div>
+</div>
+<!-- Background Decorative Elements -->
+<div class="absolute top-[10%] right-[10%] w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[5%] left-[5%] w-96 h-96 bg-primary-container/20 rounded-full blur-3xl"></div>
+</section>
+<!-- Right Side: Form -->
+<section class="flex-1 flex items-center justify-center p-md md:p-xl bg-surface-container-lowest relative">
+<div class="w-full max-w-[480px]">
+<!-- Mobile Logo -->
+<div class="md:hidden flex items-center gap-sm mb-lg">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">SaaSify</span>
+</div>
+<div class="mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Hesap Oluştur</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Zaten bir hesabınız var mı? <a class="text-primary font-bold hover:underline" href="#">Giriş yap</a></p>
+</div>
+<form class="space-y-base" id="registerForm">
+<!-- Full Name -->
+                    <div class="space-y-xs">
+                        <label class="font-label-md text-label-md text-outline" asp-for="Name">İsim</label>
+                        <div class="relative group">
+                            <input class="w-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 rounded-xl px-md py-sm font-body-md transition-all duration-200 outline-none" id="full_name" placeholder="" required="" type="text" />
+                            <div class="space-y-xs">
+                                <label class="font-label-md text-label-md text-outline" asp-for="Surname">Soy İsim</label>
+                                <input class="w-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 rounded-xl px-md py-sm font-body-md transition-all duration-200 outline-none" id="surname" placeholder="" required="" type="text" />
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline-variant opacity-0 group-focus-within:opacity-100 transition-opacity" data-icon="person">person</span>
+                            </div>
+                        </div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Username -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-outline" asp-for="UserName">Kullanıcı Adı</label>
+<input class="w-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 rounded-xl px-md py-sm font-body-md transition-all duration-200 outline-none" id="username" placeholder="" required="" type="text"/>
+</div>
+<!-- Email -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-outline" asp-for="Email">E-posta Adresi</label>
+<input class="w-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 rounded-xl px-md py-sm font-body-md transition-all duration-200 outline-none" id="email" placeholder="" required="" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-outline" asp-for="Password">Şifre</label>
+<div class="relative group">
+<input class="w-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 rounded-xl px-md py-sm font-body-md transition-all duration-200 outline-none" id="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary transition-colors" onclick="togglePassword('password')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+<!-- Strength Meter -->
+<div class="pt-xs">
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="strength-bar h-full w-0 bg-error" id="strengthMeter"></div>
+</div>
+<div class="flex justify-between items-center mt-xs">
+<p class="font-label-md text-label-md text-outline italic" id="strengthText">Şifre girin</p>
+<div class="flex gap-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant" id="req-length"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant" id="req-num"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant" id="req-spec"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-outline" asp-for="ConfirmPassword">Şifre Onayı</label>
+<div class="relative group">
+<input class="w-full bg-surface-container border-none focus:ring-2 focus:ring-primary/20 rounded-xl px-md py-sm font-body-md transition-all duration-200 outline-none" id="confirm_password" placeholder="••••••••" required="" type="password"/>
+<span class="material-symbols-outlined absolute right-12 top-1/2 -translate-y-1/2 text-error hidden transition-all" data-icon="error" id="matchIndicator">error</span>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline-variant hover:text-primary transition-colors" onclick="togglePassword('confirm_password')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-start gap-sm py-sm">
+<input class="mt-1 rounded border-outline-variant text-primary focus:ring-primary/20" id="terms" required="" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface-variant" for="terms">
+                            Hizmet Şartları ve <a class="text-primary hover:underline" href="#">Gizlilik Politikası'nı</a> Kabul ediyorum.
+                        </label>
+</div>
+<button class="w-full gradient-button text-white font-title-lg text-title-lg py-md rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200" type="submit">
+                       Hesap Oluştur
+                    </button>
+<div class="relative py-md">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-outline-variant/30"></div></div>
+<div class="relative flex justify-center"><span class="bg-surface-container-lowest px-sm font-label-md text-label-md text-outline">VEYA DEVAM ET</span></div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<button class="flex items-center justify-center gap-sm bg-white border border-outline-variant/20 hover:bg-surface-container-low transition-colors rounded-xl py-sm shadow-sm" type="button">
+<img alt="Google Logo" class="w-5 h-5" data-alt="Official Google brand icon with its signature four-color palette including red, yellow, green, and blue, presented in a clean minimalist high-resolution format for professional UI authentication." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM58zIl2H1bSsHi32MAOgpWGpp3u_e_5ox25hSubUWil2R-yHaeB-T623YXSCzWKTzXzChy0b5aFlXuSS6cr44xSI6_rB-nQXRtVEcyeB2Zyt-Teg-RM8LYxp1SXWnP3DCCPLZQ0vqoDGW-C1cEyBIgT4If7CPd0CTAZKd--XFGfmuMaTxbH5Tt0lulFuPhB3aQ9ooDljJw-cLCZkag887yjPq1Mv-ogte5BfrZvwJm-LuQ-iYVpw5AOV223LVpoDPFBP5ZoDwiTY"/>
+<span class="font-body-md text-body-md font-semibold">Google</span>
+</button>
+<button class="flex items-center justify-center gap-sm bg-white border border-outline-variant/20 hover:bg-surface-container-low transition-colors rounded-xl py-sm shadow-sm" type="button">
+<span class="material-symbols-outlined text-black" data-icon="apple" style="font-variation-settings: 'FILL' 1;">apps</span>
+<span class="font-body-md text-body-md font-semibold">Apple</span>
+</button>
+</div>
+</form>
+<!-- Status Overlay (Success/Processing) -->
+<div class="fixed inset-0 bg-white/80 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300" id="statusOverlay">
+<div class="text-center">
+<div class="w-20 h-20 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-on-primary-container text-[40px] animate-bounce" data-icon="check_circle">check_circle</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Hesap oluşturuldu!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Yudi'ye hoş geldiniz. Yönlendiriliyorsunuz...</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+        @await Component.InvokeAsync("DefaultScriptComponentPartial")
+</body></html>

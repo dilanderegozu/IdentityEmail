@@ -1,0 +1,353 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        body {
+            background-color: #f5f7fb;
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #7f30c5 0%, #af0093 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #7f30c5 0%, #af0093 100%);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#ffade3",
+                    "inverse-primary": "#ddb7ff",
+                    "surface": "#fff7fe",
+                    "primary": "#7f30c5",
+                    "background": "#fff7fe",
+                    "secondary-fixed": "#ffd8ee",
+                    "on-surface": "#1f1a22",
+                    "outline": "#7e7384",
+                    "inverse-on-surface": "#f8edfa",
+                    "on-tertiary-container": "#fffbff",
+                    "on-tertiary-fixed": "#251a00",
+                    "surface-container-low": "#fbf0fd",
+                    "secondary-container": "#fe4ed7",
+                    "surface-variant": "#e9dfec",
+                    "tertiary-container": "#936f00",
+                    "outline-variant": "#cfc2d5",
+                    "surface-tint": "#8134c8",
+                    "inverse-surface": "#342e38",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed": "#3a0030",
+                    "on-primary-fixed-variant": "#680bae",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#994ee0",
+                    "primary-fixed": "#f0dbff",
+                    "on-primary-container": "#fffbff",
+                    "surface-dim": "#e1d7e3",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e9dfec",
+                    "on-surface-variant": "#4c4353",
+                    "error": "#ba1a1a",
+                    "on-background": "#1f1a22",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#ddb7ff",
+                    "on-secondary-container": "#5f004f",
+                    "on-tertiary-fixed-variant": "#5a4300",
+                    "surface-container-high": "#efe5f2",
+                    "tertiary": "#745800",
+                    "tertiary-fixed-dim": "#f1c042",
+                    "surface-container": "#f5eaf7",
+                    "tertiary-fixed": "#ffdf99",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#af0093",
+                    "surface-bright": "#fff7fe",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#2c0050",
+                    "on-secondary-fixed-variant": "#860070"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "8px",
+                    "lg": "40px",
+                    "sm": "12px",
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "gutter": "24px",
+                    "xl": "64px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Top Navigation Header -->
+<header class="bg-white/70 backdrop-blur-xl border-b border-white/50 shadow-[0px_4px_20px_rgba(0,0,0,0.03)] fixed top-0 w-full z-50">
+<div class="flex justify-between items-center h-[72px] px-md max-w-container-max mx-auto w-full">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary"><span style="letter-spacing: -0.6px; text-align: center; background-color: rgb(245, 247, 251);" class="">Yudi</span></span>
+<nav class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Ana Sayfa</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Analytics</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Messages</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Team</a>
+<a class="text-primary font-bold relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full font-body-md text-body-md" href="#">Settings</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">help</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">apps</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant/30">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young entrepreneur with a friendly expression, captured with soft studio lighting in a bright, modern office setting. The background is a clean white aesthetic with subtle hints of glass and high-tech equipment. The lighting is bright and ethereal, perfectly matching a premium software platform's clean light-mode user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxzJ9UGl0Zoo0Qj5XTdB1OG-gouwJW7yzLjoEZTqb7JRPrp5nZpVDQ-ZeIehR5ow0N4mwe6ZjY2fvrWYDMpBXG1tLoDPM4889r6xdDkPwLuaVdj5KhbkJM30Ha82ABBPj_GTl659m-GiZqBEi15ocWQQ5S_gpOcxAQ3Ld6_aEETb6CGx1Qa3weKmIJb6FoatKF89Q7awn9K5Mb5bSgwWv1HduptoeccIGt0J3278oVy3v1XZzw8FojWlyAnrgBeksbq1jVetOAijI">
+</div>
+</div>
+</div>
+</header>
+<main class="pt-[104px] pb-xl px-md max-w-container-max mx-auto w-full space-y-lg">
+<!-- Hero Profile Section -->
+<section class="relative">
+<div class="h-64 md:h-80 w-full rounded-xl overflow-hidden relative shadow-[0px_8px_30px_rgba(0,0,0,0.06)]">
+<img alt="Cover Gradient" class="w-full h-full object-cover" data-alt="A vibrant, abstract gradient backdrop featuring sweeping waves of deep violet, soft pink, and cool lavender. The composition is sleek and fluid, suggesting high-speed connectivity and digital innovation. The lighting is soft and ambient, creating a luxurious and immersive digital atmosphere suitable for a premium enterprise software application's dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ-SNN5NahtkoiXuxxtOIzDHqLsPMieHx6hRUJn_5BE0iW9DK-Y3-hrbf2JYjvde6awthx-dDZmr72a407XBTflVqmBIWu2RjUxHbYDNlzeSFsYa0CvAMWONp9ZnN9Q7FTuCjng0UXReBQpxhd2Gz3EoYfHdYkbbYucWQJCsdU4unZInCXofWYKFUKiJaqYhUN2nHE7neD2GvJF_LRkHwayc2-zUh01Au68TUSVHx25aGbbjhVvOdYLARWJeWHhgffn2tiObhvYng">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<button class="absolute top-md right-md glass-card px-md py-sm rounded-full text-primary font-body-md text-body-md flex items-center gap-xs hover:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit Cover
+                </button>
+</div>
+<div class="px-xl -mt-16 relative flex flex-col md:flex-row items-end gap-md">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-surface overflow-hidden shadow-xl">
+<img alt="Avatar" class="w-full h-full object-cover" data-alt="Close-up portrait of a tech executive in a high-key, minimalist setting. The individual is wearing a dark navy blazer, looking confidently at the camera. The image has a clean, professional finish with natural sunlight streaming from a large window, emphasizing a bright and welcoming high-end corporate identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6ePWvZ5QX34b-wkrfkR1tlVK1K2wZryIcmkOOJ-xDawuHyLPgzdJvQxiuUDjy00Y7ZM4fRBROgzZE4LhrRTERcEUBwB_39dSWV9vdXU9RzqOpCrUF1LXX5skstP1YWq6WS72MX0yRvoli1FkV1PX31Ue6NxK5BxIkaoJk4ar4fnqCT153uE6dE6Z8pS2TXiqi7d4x7QKtTA48USHA37DNKref5zvr8h8Nd9bOD_AAfQm0WYzC3_pQI-uLpjG9UA8qvi9F1xF_Dlo">
+</div>
+<div class="pb-base text-center md:text-left">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Alex Thompson</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant flex items-center justify-center md:justify-start gap-xs">
+                        Senior Product Lead at <span class="font-bold text-primary">Nexus AI</span>
+</p>
+</div>
+<div class="flex-grow"></div>
+<div class="pb-base flex gap-sm">
+<button class="primary-gradient text-on-primary px-xl py-md rounded-full font-title-lg text-title-lg shadow-lg hover:opacity-90 active:scale-95 transition-all">
+                        Update Profile
+                    </button>
+<button class="bg-white px-xl py-md rounded-full border border-outline-variant font-title-lg text-title-lg text-on-surface hover:bg-surface transition-all">
+                        Share Link
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Sidebar: Stats & Info -->
+<div class="md:col-span-4 space-y-gutter">
+<!-- Activity Stats Widget -->
+<div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-white/50">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">Account Health</h3>
+<span class="material-symbols-outlined text-primary">bolt</span>
+</div>
+<div class="space-y-md">
+<div>
+<div class="flex justify-between text-label-md font-label-md mb-xs">
+<span class="text-on-surface-variant uppercase">Profile Completion</span>
+<span class="text-primary font-bold">92%</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full primary-gradient rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-sm pt-base">
+<div class="p-sm bg-surface-container-low rounded-lg">
+<p class="text-label-md font-label-md text-outline">PROJECTS</p>
+<p class="text-headline-md font-headline-md text-on-surface">24</p>
+</div>
+<div class="p-sm bg-surface-container-low rounded-lg">
+<p class="text-label-md font-label-md text-outline">COLLABS</p>
+<p class="text-headline-md font-headline-md text-on-surface">118</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Personal Info Section -->
+<div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-white/50">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-title-lg text-title-lg text-on-surface">About</h3>
+<button class="text-primary material-symbols-outlined hover:bg-primary-fixed p-1 rounded-full transition-colors">edit</button>
+</div>
+<div class="space-y-sm">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">mail</span>
+<div>
+<p class="text-label-md font-label-md text-outline">EMAIL</p>
+<p class="text-body-md font-body-md text-on-surface">alex.thompson@nexus-ai.io</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">location_on</span>
+<div>
+<p class="text-label-md font-label-md text-outline">LOCATION</p>
+<p class="text-body-md font-body-md text-on-surface">San Francisco, CA</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-on-surface-variant">language</span>
+<div>
+<p class="text-label-md font-label-md text-outline">WEBSITE</p>
+<a class="text-body-md font-body-md text-primary hover:underline" href="#">alex-t-design.io</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main: Detailed Settings & Activities -->
+<div class="md:col-span-8 space-y-gutter">
+<!-- Message Analytics Widget -->
+<div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-white/50">
+<div class="flex items-center justify-between mb-xl">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Engagement Overview</h3>
+<p class="font-body-md text-body-md text-outline">Performance metrics for last 30 days</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-lg text-label-md font-label-md px-md py-sm focus:ring-2 focus:ring-primary cursor-pointer">
+<option>Last 30 Days</option>
+<option>Last 7 Days</option>
+<option>Custom Range</option>
+</select>
+</div>
+<div class="h-48 w-full flex items-end justify-between gap-sm pb-base">
+<!-- Mockup Graph bars -->
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 45%" title="Day 1"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 65%" title="Day 2"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 35%" title="Day 3"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 85%" title="Day 4"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 55%" title="Day 5"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 95%" title="Day 6"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 70%" title="Day 7"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 50%" title="Day 8"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 40%" title="Day 9"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 60%" title="Day 10"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 75%" title="Day 11"></div>
+<div class="flex-grow bg-primary-fixed-dim/30 hover:bg-primary rounded-t-lg transition-all duration-300" style="height: 90%" title="Day 12"></div>
+</div>
+</div>
+<!-- Settings Tab Container -->
+<div class="bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border border-white/50 overflow-hidden">
+<div class="flex border-b border-outline-variant/20">
+<button class="px-md py-md border-b-2 border-primary text-primary font-bold text-body-md transition-all">Account Settings</button>
+<button class="px-md py-md text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all">Security &amp; Privacy</button>
+<button class="px-md py-md text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all">Connected Apps</button>
+<button class="px-md py-md text-on-surface-variant font-body-md hover:bg-surface-container-low transition-all">Notifications</button>
+</div>
+<div class="p-xl space-y-xl">
+<!-- Account Details Form -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Full Name</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-md font-body-md text-body-md focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all outline-none" type="text" value="Alex Thompson">
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Username</label>
+<input class="w-full bg-[#eceef3] border-none rounded-xl px-md py-md font-body-md text-body-md focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all outline-none" type="text" value="alex_t_88">
+</div>
+<div class="md:col-span-2 space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Biography</label>
+<textarea class="w-full bg-[#eceef3] border-none rounded-xl px-md py-md font-body-md text-body-md focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all outline-none resize-none" rows="3">Product lead focused on creating seamless user experiences through generative AI and design systems. Living in San Francisco with a love for coffee and crisp UI.</textarea>
+</div>
+</div>
+<!-- Security Toggles -->
+
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface border-t border-outline-variant/20 py-md mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-md max-w-container-max mx-auto w-full">
+<div class="mb-sm md:mb-0">
+<span class="font-title-lg text-title-lg font-bold text-on-surface"><span style="color: rgb(127, 48, 197); font-size: 24px; letter-spacing: -0.6px; text-align: center; background-color: rgb(245, 247, 251);">Yudi</span></span>
+</div>
+<div class="flex gap-md text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-secondary transition-all" href="#">Privacy Policy</a>
+<a class="hover:text-secondary transition-all" href="#">Terms of Service</a>
+<a class="hover:text-secondary transition-all" href="#">Security</a>
+<a class="hover:text-secondary transition-all" href="#">Status</a>
+</div>
+<div class="mt-sm md:mt-0">
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 SaaSify Enterprise. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and hover effects
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-95');
+            });
+            el.addEventListener('mouseup', () => {
+                el.classList.remove('scale-95');
+            });
+            el.addEventListener('mouseleave', () => {
+                el.classList.remove('scale-95');
+            });
+        });
+
+        // Toggle Switch Animation Logic
+        document.querySelectorAll('.relative.w-12.h-6').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const circle = this.querySelector('div');
+                if(circle.classList.contains('translate-x-6')) {
+                    circle.classList.remove('translate-x-6');
+                } else {
+                    circle.classList.add('translate-x-6');
+                }
+            });
+        });
+    </script>
+
+
+</body></html>

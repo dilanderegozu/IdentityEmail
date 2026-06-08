@@ -1,0 +1,103 @@
+﻿ <script>
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm_password');
+        const strengthMeter = document.getElementById('strengthMeter');
+        const strengthText = document.getElementById('strengthText');
+        const matchIndicator = document.getElementById('matchIndicator');
+        const registerForm = document.getElementById('registerForm');
+        const statusOverlay = document.getElementById('statusOverlay');
+
+        const reqLength = document.getElementById('req-length');
+        const reqNum = document.getElementById('req-num');
+        const reqSpec = document.getElementById('req-spec');
+
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            const icon = input.nextElementSibling.querySelector('.material-symbols-outlined');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility_off';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility';
+            }
+        }
+
+        passwordInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            let strength = 0;
+
+// Check length
+            if (val.length >= 8) {
+                strength += 33;
+                reqLength.classList.replace('bg-outline-variant', 'bg-tertiary');
+            } else {
+                reqLength.classList.replace('bg-tertiary', 'bg-outline-variant');
+            }
+
+            // Check numbers
+            if (/\d/.test(val)) {
+                strength += 33;
+                reqNum.classList.replace('bg-outline-variant', 'bg-tertiary');
+            } else {
+                reqNum.classList.replace('bg-tertiary', 'bg-outline-variant');
+            }
+
+            // Check special chars
+            if (/[!@@#$%^&*(),.?":{}|<>]/.test(val)) {
+                strength += 34;
+                reqSpec.classList.replace('bg-outline-variant', 'bg-tertiary');
+            } else {
+                reqSpec.classList.replace('bg-tertiary', 'bg-outline-variant');
+            }
+
+            strengthMeter.style.width = strength + '%';
+
+            if (strength < 34) {
+                strengthMeter.className = 'strength-bar h-full bg-error';
+                strengthText.textContent = 'Kolay';
+                strengthText.className = 'font-label-md text-label-md text-error italic';
+            } else if (strength < 100) {
+                strengthMeter.className = 'strength-bar h-full bg-tertiary';
+                strengthText.textContent = 'Orta';
+                strengthText.className = 'font-label-md text-label-md text-tertiary italic';
+            } else {
+                strengthMeter.className = 'strength-bar h-full bg-secondary';
+                strengthText.textContent = 'Güçlü Kurumsal Şifre';
+                strengthText.className = 'font-label-md text-label-md text-secondary italic';
+            }
+        });
+
+        confirmPasswordInput.addEventListener('input', () => {
+            if (confirmPasswordInput.value === '') {
+                matchIndicator.classList.add('hidden');
+                return;
+            }
+
+            if (confirmPasswordInput.value === passwordInput.value) {
+                matchIndicator.textContent = 'check_circle';
+                matchIndicator.classList.remove('hidden', 'text-error');
+                matchIndicator.classList.add('text-secondary');
+            } else {
+                matchIndicator.textContent = 'error';
+                matchIndicator.classList.remove('hidden', 'text-secondary');
+                matchIndicator.classList.add('text-error');
+            }
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Show processing
+            statusOverlay.classList.remove('hidden');
+            setTimeout(() => {
+                statusOverlay.classList.remove('opacity-0');
+            }, 50);
+
+            // Simulate redirect
+            setTimeout(() => {
+      
+                statusOverlay.classList.add('opacity-0');
+                setTimeout(() => statusOverlay.classList.add('hidden'), 300);
+            }, 2000);
+        });
+    </script> 
