@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="light" lang="en" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Forgot Password | Ethereal Enterprise</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#2c0050",
+                        "inverse-primary": "#ddb7ff",
+                        "on-tertiary-fixed": "#251a00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ddb7ff",
+                        "on-surface-variant": "#4c4353",
+                        "inverse-on-surface": "#f8edfa",
+                        "secondary-fixed": "#ffd8ee",
+                        "on-surface": "#1f1a22",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#3a0030",
+                        "surface-container": "#f5eaf7",
+                        "primary": "#7f30c5",
+                        "on-primary-container": "#fffbff",
+                        "secondary-fixed-dim": "#ffade3",
+                        "tertiary-fixed": "#ffdf99",
+                        "secondary": "#af0093",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#936f00",
+                        "surface": "#fff7fe",
+                        "on-background": "#1f1a22",
+                        "tertiary": "#745800",
+                        "on-secondary-fixed-variant": "#860070",
+                        "surface-variant": "#e9dfec",
+                        "surface-container-high": "#efe5f2",
+                        "outline": "#7e7384",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#680bae",
+                        "surface-bright": "#fff7fe",
+                        "outline-variant": "#cfc2d5",
+                        "primary-container": "#994ee0",
+                        "on-secondary": "#ffffff",
+                        "background": "#fff7fe",
+                        "surface-container-low": "#fbf0fd",
+                        "on-secondary-container": "#5f004f",
+                        "on-tertiary-fixed-variant": "#5a4300",
+                        "on-tertiary-container": "#fffbff",
+                        "surface-container-highest": "#e9dfec",
+                        "secondary-container": "#fe4ed7",
+                        "inverse-surface": "#342e38",
+                        "surface-dim": "#e1d7e3",
+                        "primary-fixed": "#f0dbff",
+                        "surface-tint": "#8134c8",
+                        "tertiary-fixed-dim": "#f1c042"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "lg": "40px",
+                        "base": "8px",
+                        "xl": "64px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fb;
+            overflow-x: hidden;
+        }
+
+        .bg-mesh {
+            background-image: radial-gradient(at 0% 0%, rgba(255, 79, 216, 0.15) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(183, 108, 255, 0.15) 0px, transparent 50%);
+        }
+
+        .auth-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .floating-label-group {
+            position: relative;
+        }
+
+            .floating-label-group input:focus ~ label,
+            .floating-label-group input:not(:placeholder-shown) ~ label {
+                transform: translateY(-24px) scale(0.85);
+                color: #7f30c5;
+            }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #ff4fd8 0%, #b76cff 100%);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-mesh min-h-screen flex flex-col items-center justify-center p-gutter">
+    <!-- Top Navigation Placeholder (Hidden for transactional focus as per Shell Visibility Rule) -->
+    <main class="w-full max-w-[440px] z-10 fade-in">
+        <!-- Brand Identity -->
+        <div class="flex flex-col items-center mb-lg">
+            <div class="w-16 h-16 rounded-2xl primary-gradient flex items-center justify-center shadow-lg mb-md transform hover:scale-105 transition-transform duration-300">
+                <span class="material-symbols-outlined text-white text-[32px]" style="font-variation-settings: &quot;FILL&quot; 1;">auto_awesome</span>
+            </div>
+            <h1 class="font-headline-md text-headline-md text-primary tracking-tight">Yudi Kurumsal A.Ş</h1>
+        </div>
+        <!-- Auth Card -->
+        <div class="auth-card rounded-3xl p-lg shadow-[0px_4px_20px_rgba(0,0,0,0.03)] transition-all duration-500" id="auth-container">
+            <!-- Reset Password State -->
+            <div class="space-y-md" id="request-state">
+                <div class="text-center mb-md">
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Şifreni mi unuttun ?</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant">E-posta adresinizi girin, size şifrenizi sıfırlamak için bir bağlantı göndereceğiz.</p>
+                </div>
+                <form class="space-y-lg" id="reset-form" onsubmit="handleReset(event)">
+                    <div class="floating-label-group">
+                        <input class="w-full px-md py-sm bg-[#eceef3] border-none rounded-xl font-body-lg text-on-surface focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all duration-200 outline-none" id="email" placeholder=" " required="" type="email">
+                        <label class="absolute left-md top-sm font-body-md text-outline pointer-events-none transition-all duration-200 origin-left" for="email">E-posta Adresi</label>
+                    </div>
+                    <button class="w-full h-12 primary-gradient text-white font-label-md text-label-md rounded-xl shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-sm" type="submit">
+                        <span class="">Sıfırlama Talebi Gönder</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                </form>
+                <div class="text-center mt-lg pt-md border-t border-white/30">
+                    <a class="font-label-md text-label-md text-primary hover:text-secondary transition-colors inline-flex items-center gap-xs" href="#">
+                        <span class="material-symbols-outlined text-sm">keyboard_backspace</span>
+                        <span class="">Giriş Sayfasına Dön</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Success State (Initially Hidden) -->
+            <div class="hidden text-center py-md space-y-md" id="success-state">
+                <div class="w-16 h-16 rounded-full bg-tertiary-fixed text-tertiary mx-auto flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[32px]">mark_email_read</span>
+                </div>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">Check your email</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">We've sent a password reset link to <span class="font-bold text-primary" id="display-email"></span>. It should arrive shortly.</p>
+                <div class="pt-md">
+                    <button class="font-label-md text-label-md text-primary hover:text-secondary transition-colors underline underline-offset-4" onclick="toggleStates()">
+                        Didn't receive the email? Try again
+                    </button>
+                </div>
+                <div class="pt-lg border-t border-white/30">
+                    <a class="font-label-md text-label-md text-primary hover:text-secondary transition-colors inline-flex items-center gap-xs" href="#">
+                        <span class="material-symbols-outlined text-sm">keyboard_backspace</span>
+                        <span class="">Back to Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Background Atmospheric Decoration -->
+        <div class="fixed -bottom-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="fixed -top-24 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none"></div>
+    </main>
+    <!-- Footer Identity -->
+    <footer class="mt-xl text-center fade-in" style="animation-delay: 0.2s">
+        <p class="font-label-md text-label-md text-outline-variant">© 2024 Ethereal Enterprise. All rights reserved.</p>
+        <div class="flex gap-md justify-center mt-sm">
+            <a class="font-label-md text-label-md text-outline-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+            <a class="font-label-md text-label-md text-outline-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+        </div>
+    </footer>
+    <script>
+        function handleReset(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('email');
+            const displayEmail = document.getElementById('display-email');
+            const requestState = document.getElementById('request-state');
+            const successState = document.getElementById('success-state');
+            const card = document.getElementById('auth-container');
+
+            // Set email in success message
+            displayEmail.textContent = emailInput.value;
+
+            // Transition Animation
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                requestState.classList.add('hidden');
+                successState.classList.remove('hidden');
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        function toggleStates() {
+            const requestState = document.getElementById('request-state');
+            const successState = document.getElementById('success-state');
+            const card = document.getElementById('auth-container');
+
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                successState.classList.add('hidden');
+                requestState.classList.remove('hidden');
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 300);
+        }
+    </script>
+
+
+</body>
+</html>
