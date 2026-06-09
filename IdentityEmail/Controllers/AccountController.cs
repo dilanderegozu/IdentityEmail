@@ -7,7 +7,7 @@ using MimeKit;
 
 namespace IdentityEmail.Controllers
 {
-    public class AccountController:Controller
+    public class AccountController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
@@ -27,9 +27,9 @@ namespace IdentityEmail.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(CreateUserRegisterDto createUserRegisterDto)
+        public async Task<IActionResult> Register([FromBody]CreateUserRegisterDto createUserRegisterDto)
         {
-     
+
             if (createUserRegisterDto.Password != createUserRegisterDto.ConfirmPassword)
             {
                 return Json(new { success = false, message = "Parolalar eşleşmiyor" });
@@ -43,6 +43,8 @@ namespace IdentityEmail.Controllers
                 Name = createUserRegisterDto.Name,
                 Surname = createUserRegisterDto.Surname,
                 Email = createUserRegisterDto.Email,
+                UserName = createUserRegisterDto.UserName,
+                ConfirmCode = code
 
             };
             var result = await _userManager.CreateAsync(appUser, createUserRegisterDto.Password);
@@ -64,7 +66,7 @@ namespace IdentityEmail.Controllers
                         await client.ConnectAsync("smtp.gmail.com", 587, false);
                         await client.AuthenticateAsync(
       _config["Email:Address"],
-      _config["Email:Password"]  // "opwixhvfqygpzktp"
+      _config["Email:Password"]  
   );
                         await client.SendAsync(mimeMessage);
                         await client.DisconnectAsync(true);
@@ -78,11 +80,68 @@ namespace IdentityEmail.Controllers
                 }
             }
 
-   
+
             var errors = string.Join("<br>", result.Errors.Select(x => x.Description));
             return Json(new { success = false, message = errors });
 
         }
+
+        [HttpGet]
+        public IActionResult ConfirmEmail(string email)
+        {
+            return View(model: email); 
+        }
+        [HttpPost] 
+        public async Task<IActionResult> ConfirmEmail(string email, string code)
+        {
+            var user = _userManager.Users.FirstOrDefault(x => x.Email == email);
+            if (user == null)
+            {
+                return RedirectToAction("Register", "Account");
+            }
+            if (user.ConfirmCode == code)
+            {
+                user.EmailConfirmed = true;
+                await _userManager.UpdateAsync(user);
+                return RedirectToAction("Login", "Account"); 
+
+            }
+            else
+            {
+                return RedirectToAction("ConfirmEmail", new { email = email }); // yanlış kod, geri dön
+            }
+
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginUserDto loginUserDto)
+        {
+            var result = await _signInManager.PasswordSignInAsync(loginUserDto.UserName, loginUserDto.Password, loginUserDto.IsPersistent, false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
+            else if (result.RequiresTwoFactor)
+            {
+                return RedirectToAction("TwoFactorLogin"); 
+            }
+
+            return View();
+        }
+
+        [HttpPost] 
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
         }
     }
+}
+    
 
