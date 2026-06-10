@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="en" style="">
+<svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<head>
+    <title>@ViewData["Title"] | Yudi</title>
+    @await Component.InvokeAsync("DashboardHead")
+</head>
+<body class="font-body-md text-on-surface">
+    <!-- TopNavBar -->
+    @await Component.InvokeAsync("DashboardNavBar")
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+   
+    @await Component.InvokeAsync("DashboardFooter")
+    <!-- Footer -->
+
+    <!-- FAB (Contextual for Dashboard) -->
+    <button class="fixed bottom-lg right-lg h-14 w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+        <span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">add</span>
+    </button>
+    <script>
+            document.getElementById('notifBtn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.getElementById('notifDropdown').classList.toggle('hidden');
+                document.getElementById('profileDropdown').classList.add('hidden');
+            });
+
+            document.getElementById('profileBtn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.getElementById('profileDropdown').classList.toggle('hidden');
+                document.getElementById('notifDropdown').classList.add('hidden');
+            });
+
+            document.addEventListener('click', () => {
+                document.getElementById('notifDropdown').classList.add('hidden');
+                document.getElementById('profileDropdown').classList.add('hidden');
+            });
+    </script>
+
+
+</body></html>

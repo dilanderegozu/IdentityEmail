@@ -1,0 +1,94 @@
+﻿<header class="docked full-width top-0 sticky z-50 bg-white/70 backdrop-blur-xl border-b border-white/50 h-[72px] shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
+    <div class="flex justify-between items-center h-full px-md max-w-container-max mx-auto w-full">
+        <!-- Brand & Search -->
+        <div class="flex items-center gap-xl">
+            <span class="font-headline-md text-headline-md font-bold text-primary"><span style="letter-spacing: -0.6px; text-align: center; background-color: rgb(245, 247, 251);" class="">Yudi</span></span>
+            <div class="hidden md:flex items-center bg-[#eceef3] px-sm py-xs rounded-xl w-[320px]">
+                <span class="material-symbols-outlined text-outline mr-xs">search</span>
+                <input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder:text-outline-variant" placeholder="Arama..." type="text">
+            </div>
+        </div>
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center gap-md">
+            <a class="font-body-md text-body-md text-primary font-bold relative active-dot transition-colors duration-200" href="/Dashboard/Index">Ana Sayfa</a>
+
+            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="/Dashboard/Messages">Mesaj Kutusu</a>
+
+        </nav>
+        <!-- Actions -->
+        <div class="flex items-center gap-md">
+            <!-- Bildirim -->
+            <div class="relative">
+                <button id="notifBtn" class="relative p-xs">
+                    <span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">mail</span>
+                    @if (ViewBag.UnreadMessages > 0)
+                    {
+                        <span class="absolute -top-1 -right-1 w-4 h-4 bg-error text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                            @ViewBag.UnreadMessages
+                        </span>
+                    }
+                </button>
+                <div class="hidden absolute right-0 top-12 w-[340px] bg-white rounded-xl shadow-xl border border-outline-variant/20 z-50" id="notifDropdown">
+                    <div class="p-md border-b border-outline-variant/20">
+                        <p class="font-title-lg text-title-lg text-on-surface">@ViewBag.UnreadMessages Okunmamış Mesaj</p>
+                    </div>
+                    <div class="divide-y divide-outline-variant/20">
+                        @foreach (var msg in ViewBag.UnreadMessagesList)
+                        {
+                            <div class="p-sm hover:bg-surface-container-low transition-colors cursor-pointer">
+                                <p class="font-body-md font-bold text-on-surface">@msg.Sender.Email</p>
+                                <p class="font-body-md text-on-surface-variant line-clamp-1">@msg.Subject</p>
+                                <p class="text-[10px] text-outline-variant mt-xs">@msg.SentAt.ToString("HH:mm")</p>
+                            </div>
+                        }
+                    </div>
+                    <div class="p-sm border-t border-outline-variant/20">
+                        <a href="/Dashboard/Messages" class="flex items-center justify-center gap-xs font-label-md text-label-md text-primary hover:text-secondary">
+                            Gelen Kutusu
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profil -->
+            <div class="relative flex items-center gap-sm">
+                <span class="font-body-md text-on-surface-variant">
+                    Merhaba, <span class="font-bold text-on-surface">@User.Identity.Name</span>
+                </span>
+                <div id="profileBtn" class="h-10 w-10 rounded-full overflow-hidden border-2 border-white shadow-sm cursor-pointer">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQFXPIKJkCtrQg/profile-displayphoto-crop_800_800/B4DZx3sopYKYAI-/0/1771534716985?e=1782950400&v=beta&t=yMwh8gDw8i3J3OKP39jzyA8rrdoJV2jipPDk06GlX_E" class="w-full h-full object-cover" />
+                </div>
+                <div class="hidden absolute right-0 top-12 w-[240px] bg-white rounded-xl shadow-xl border border-outline-variant/20 z-50" id="profileDropdown">
+                    <div class="p-md flex items-center gap-sm border-b border-outline-variant/20">
+                        <div class="h-10 w-10 rounded-full overflow-hidden shrink-0">
+                            <img src="https://media.licdn.com/dms/image/v2/D4D03AQFXPIKJkCtrQg/profile-displayphoto-crop_800_800/B4DZx3sopYKYAI-/0/1771534716985?e=1782950400&v=beta&t=yMwh8gDw8i3J3OKP39jzyA8rrdoJV2jipPDk06GlX_E" class="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <p class="font-body-md font-bold text-on-surface">@User.Identity.Name</p>
+                         
+                        </div>
+                    </div>
+                    <div class="p-xs">
+                        <a href="/Account/Profile" class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-on-surface">
+                            <span class="material-symbols-outlined text-outline text-[20px]">person</span>
+                            Profilim
+                        </a>
+                        <a href="/Dashboard/Messages" class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-on-surface">
+                            <span class="material-symbols-outlined text-outline text-[20px]">inbox</span>
+                            Gelen Kutusu
+                        </a>
+                        <div class="border-t border-outline-variant/20 mt-xs pt-xs">
+                            <form method="post" action="/Account/Logout">
+                                <button type="submit" class="w-full flex items-center gap-sm p-sm rounded-lg hover:bg-error/10 transition-colors font-body-md text-error">
+                                    <span class="material-symbols-outlined text-[20px]">logout</span>
+                                    Çıkış Yap
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

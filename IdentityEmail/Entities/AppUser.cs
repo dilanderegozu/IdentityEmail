@@ -11,7 +11,11 @@ namespace IdentityEmail.Entities
         public string? City { get; set; }
         public string? JobTitle { get; set; }
         public string? ConfirmCode { get; set; }
+        public DateTime RegisteredAt { get; set; } = DateTime.Now;
         public DateTime ConfirmDate { get; set; } = DateTime.Now;
+
+        public virtual ICollection<UserMessage> SendMessages { get; set; }
+        public virtual ICollection<UserMessage> ReceivedMessages { get; set; }
 
     }
 }

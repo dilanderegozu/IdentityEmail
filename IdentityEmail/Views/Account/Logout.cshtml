@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Signed Out | Ethereal Enterprise</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+        darkMode: "class",
+        theme: {
+        extend: {
+        "colors": {
+        "surface-container-high": "#efe5f2",
+        "surface-tint": "#8134c8",
+        "on-error-container": "#93000a",
+        "on-tertiary-fixed": "#251a00",
+        "primary": "#7f30c5",
+        "on-tertiary-fixed-variant": "#5a4300",
+        "on-error": "#ffffff",
+        "outline": "#7e7384",
+        "on-surface-variant": "#4c4353",
+        "primary-fixed-dim": "#ddb7ff",
+        "surface-bright": "#fff7fe",
+        "surface": "#fff7fe",
+        "tertiary-fixed-dim": "#f1c042",
+        "on-secondary-fixed-variant": "#860070",
+        "inverse-on-surface": "#f8edfa",
+        "surface-dim": "#e1d7e3",
+        "background": "#fff7fe",
+        "on-secondary": "#ffffff",
+        "error-container": "#ffdad6",
+        "tertiary-fixed": "#ffdf99",
+        "on-surface": "#1f1a22",
+        "secondary-container": "#fe4ed7",
+        "on-primary-fixed": "#2c0050",
+        "on-primary-container": "#fffbff",
+        "secondary-fixed-dim": "#ffade3",
+        "secondary-fixed": "#ffd8ee",
+        "on-primary-fixed-variant": "#680bae",
+        "on-primary": "#ffffff",
+        "inverse-primary": "#ddb7ff",
+        "error": "#ba1a1a",
+        "surface-variant": "#e9dfec",
+        "surface-container-highest": "#e9dfec",
+        "primary-fixed": "#f0dbff",
+        "on-tertiary-container": "#fffbff",
+        "primary-container": "#994ee0",
+        "on-background": "#1f1a22",
+        "on-secondary-fixed": "#3a0030",
+        "inverse-surface": "#342e38",
+        "tertiary-container": "#936f00",
+        "on-secondary-container": "#5f004f",
+        "secondary": "#af0093",
+        "on-tertiary": "#ffffff",
+        "surface-container-low": "#fbf0fd",
+        "outline-variant": "#cfc2d5",
+        "tertiary": "#745800",
+        "surface-container-lowest": "#ffffff",
+        "surface-container": "#f5eaf7"
+        },
+        "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+        },
+        "spacing": {
+        "lg": "40px",
+        "base": "8px",
+        "xs": "4px",
+        "sm": "12px",
+        "md": "24px",
+        "xl": "64px",
+        "gutter": "24px",
+        "container-max": "1280px"
+        },
+        "fontFamily": {
+        "title-lg": ["Inter"],
+        "headline-lg-mobile": ["Inter"],
+        "display-lg": ["Inter"],
+        "label-md": ["Inter"],
+        "headline-lg": ["Inter"],
+        "body-md": ["Inter"],
+        "body-lg": ["Inter"],
+        "headline-md": ["Inter"]
+        },
+        "fontSize": {
+        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+        }
+        },
+        },
+        }
+    </script>
+    <style>
+        .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .primary-gradient {
+        background: linear-gradient(135deg, #7f30c5 0%, #af0093 100%);
+        }
+
+        .bg-mesh {
+        background-color: #fff7fe;
+        background-image: radial-gradient(at 0% 0%, rgba(127, 48, 197, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(175, 0, 147, 0.1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(127, 48, 197, 0.05) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(175, 0, 147, 0.1) 0px, transparent 50%);
+        }
+
+        .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-mesh min-h-screen flex flex-col font-body-lg text-on-background selection:bg-primary/20">
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 w-full z-50 h-[72px] flex items-center justify-between px-md max-w-container-max mx-auto bg-white/70 dark:bg-surface/70 backdrop-blur-xl border-b border-white/50 dark:border-outline-variant/20 shadow-[0px_4px_20px_rgba(0,0,0,0.03)]">
+        <div class="flex items-center gap-sm">
+            <span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Yudi Kurumsal A.Ş</span>
+        </div>
+        <div class="flex items-center gap-md">
+            <a class="font-body-lg text-body-lg text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity" href="/Account/Login">Login</a>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center pt-[72px] px-md">
+        <div class="glass-card w-full max-w-[480px] p-lg md:p-xl rounded-xl text-center flex flex-col items-center animate-in fade-in zoom-in duration-700">
+            <!-- Icon/Illustration -->
+            <div class="w-24 h-24 mb-md rounded-full bg-surface-container-low flex items-center justify-center relative group">
+                <div class="absolute inset-0 primary-gradient opacity-10 rounded-full group-hover:opacity-20 transition-opacity duration-300"></div>
+                <span class="material-symbols-outlined text-[48px] text-primary" data-icon="verified_user">verified_user</span>
+            </div>
+            <!-- Content -->
+            <h1 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Çıkış Yapıldı</h1>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">
+                Yudi Kurumsal A.Ş'i kullandığınız için teşekkür ederiz. Oturumunuz güvenli bir şekilde sonlandırıldı.
+            </p>
+            <!-- Actions -->
+            <div class="w-full space-y-md">
+                <button class="w-full primary-gradient text-white py-sm px-md rounded-lg font-title-lg text-title-lg shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-200">
+                    Tekrar Giriş Yap
+                </button>
+                <a class="inline-block font-label-md text-label-md text-primary dark:text-primary-fixed-dim hover:text-secondary transition-colors duration-200 uppercase tracking-wider" href="/Account/Login">
+                   Ana Sayfaya Dön
+                </a>
+            </div>
+            <!-- Aesthetic Divider -->
+            <div class="w-16 h-1 primary-gradient rounded-full mt-xl opacity-20"></div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-outline-variant/20 py-md px-md">
+        <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center w-full gap-base">
+            <div class="font-title-lg text-title-lg font-bold text-on-surface"><span style="color: rgb(127, 48, 197); font-size: 24px; letter-spacing: -0.6px; text-align: center; background-color: rgb(245, 247, 251);">Yudi</span></div>
+            <div class="flex gap-md">
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all opacity-80 hover:opacity-100" href="#">Gizlilik Politikası</a>
+                <a class="font-label-md text-label-md text-on-surface-variant hover:text-secondary transition-all opacity-80 hover:opacity-100" href="#">Hizmet Şartları</a>
+
+            </div>
+            <p class="font-label-md text-label-md text-on-surface-variant">
+                © @DateTime.Now.Year Yudi Kurumsal. Tüm hakları saklıdır.
+            </p>
+        </div>
+    </footer>
+    <script>
+        // Micro-interaction for the logout icon
+        const iconContainer = document.querySelector('.group');
+        iconContainer.addEventListener('mouseenter', () => {
+        const icon = iconContainer.querySelector('.material-symbols-outlined');
+        icon.style.transform = 'scale(1.1) rotate(5deg)';
+        icon.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+        });
+        iconContainer.addEventListener('mouseleave', () => {
+        const icon = iconContainer.querySelector('.material-symbols-outlined');
+        icon.style.transform = 'scale(1) rotate(0deg)';
+        });
+    </script>
+</body></html>

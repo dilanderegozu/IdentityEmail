@@ -71,15 +71,15 @@ namespace IdentityEmail.Controllers
                     {
                         await client.ConnectAsync("smtp.gmail.com", 587, false);
                         await client.AuthenticateAsync(
-      _config["Email:Address"],
-      _config["Email:Password"]  
+                        _config["Email:Address"],
+                        _config["Email:Password"]  
   );
                         await client.SendAsync(mimeMessage);
                         await client.DisconnectAsync(true);
                     }
 
                     return Json(new { success = true, email = appUser.Email });
-                }
+                } 
                 catch (Exception ex)
                 {
                     return Json(new { success = false, message = "Mail gönderilirken hata oluştu: " + ex.Message });
@@ -100,7 +100,7 @@ namespace IdentityEmail.Controllers
         [HttpPost] 
         public async Task<IActionResult> ConfirmEmail(string email, string code)
         {
-            var user = _userManager.Users.FirstOrDefault(x => x.Email == email);
+            var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
                 return RedirectToAction("Register", "Account");
@@ -114,7 +114,7 @@ namespace IdentityEmail.Controllers
             }
             else
             {
-                return RedirectToAction("ConfirmEmail", new { email = email }); // yanlış kod, geri dön
+                return RedirectToAction("ConfirmEmail", new { email = email }); 
             }
 
         }
@@ -128,16 +128,24 @@ namespace IdentityEmail.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserDto loginUserDto)
         {
+            
+            var user = await _userManager.FindByNameAsync(loginUserDto.UserName);
+            if (user != null && !user.EmailConfirmed)
+            {
+                ModelState.AddModelError("", "E-posta adresinizi onaylayınız");
+                return View(loginUserDto);
+            }
+
+            // Sonra giriş yap
             var result = await _signInManager.PasswordSignInAsync(loginUserDto.UserName, loginUserDto.Password, loginUserDto.IsPersistent, false);
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Dashboard");
             }
             else if (result.RequiresTwoFactor)
             {
-                return RedirectToAction("TwoFactorLogin"); 
+                return RedirectToAction("TwoFactorLogin");
             }
-
 
             ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı");
             return View(loginUserDto);
@@ -162,12 +170,13 @@ namespace IdentityEmail.Controllers
             var user = await _userManager.FindByEmailAsync(forgotPasswordDto.Email);
             if (user == null)
             {
-                return RedirectToAction("ForgotPasswordConfirmation"); // kullanıcı yok, yine de confirmation'a git
+                return RedirectToAction("ForgotPasswordConfirmation"); 
             }
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var encodedToken = Uri.EscapeDataString(token);
             var resetLink = Url.Action("ResetPassword", "Account",
-                new { email = forgotPasswordDto.Email, token = token }, Request.Scheme);
+                new { email = forgotPasswordDto.Email, token = encodedToken }, Request.Scheme);
 
             MimeMessage mimeMessage = new MimeMessage();
             mimeMessage.From.Add(new MailboxAddress("Yudi", _config["Email:Address"]));
@@ -186,7 +195,7 @@ namespace IdentityEmail.Controllers
                 await client.DisconnectAsync(true);
             }
 
-            return RedirectToAction("ForgotPasswordConfirmation"); // ✅ Json yerine bu
+            return RedirectToAction("ForgotPasswordConfirmation"); 
         }
 
         [HttpGet]
@@ -194,16 +203,18 @@ namespace IdentityEmail.Controllers
         {
             return View();
         }
+
+
+
         [HttpGet]
         public IActionResult ResetPassword(string token, string email)
         {
             if (token == null || email == null)
                 return RedirectToAction("Login");
 
-            // Token ve email'i view'a taşımak için DTO kullanıyoruz
             var model = new ResetPasswordDto
             {
-                Token = token,
+                Token = Uri.UnescapeDataString(token), 
                 Email = email
             };
             return View(model);
@@ -216,8 +227,7 @@ namespace IdentityEmail.Controllers
             if (user == null)
                 return RedirectToAction("Login");
 
-            // Identity token'ı doğrular ve şifreyi değiştirir
-            // Token yanlışsa veya süresi geçmişse hata döner
+
             var result = await _userManager.ResetPasswordAsync(user, resetPasswordDto.Token, resetPasswordDto.NewPassword);
 
             if (result.Succeeded)
@@ -227,6 +237,35 @@ namespace IdentityEmail.Controllers
                 ModelState.AddModelError("", error.Description);
 
             return View(resetPasswordDto);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TwoFactorLogin(string provider, string returnUrl)
+        {
+
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+            Random rnd = new Random();
+            string code= rnd.Next(100000, 999999).ToString();
+            MimeMessage mimeMessage = new MimeMessage();
+            mimeMessage.From.Add(new MailboxAddress("Yudi", _config["Email:Address"]));
+            mimeMessage.To.Add(new MailboxAddress("Kullanıcı", user.Email));
+            mimeMessage.Subject = "İki Faktörlü Doğrulama Kodu";
+            var bodyBuilder = new BodyBuilder();
+            bodyBuilder.TextBody = "Giriş yapmak için 6 haneli doğrulama kodunuz: " + code;
+            mimeMessage.Body = bodyBuilder.ToMessageBody();
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                await client.ConnectAsync("smtp.gmail.com", 587, false);
+                await client.AuthenticateAsync(_config["Email:Address"], _config["Email:Password"]);
+                await client.SendAsync(mimeMessage);
+                await client.DisconnectAsync(true);
+            };
+            return RedirectToAction("Login");
+         
         }
     }
 }
