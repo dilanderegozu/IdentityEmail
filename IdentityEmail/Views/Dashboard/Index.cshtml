@@ -4,21 +4,20 @@
 }
 
 
-    <main class="max-w-container-max mx-auto px-md py-xl space-y-xl">
-        <!-- Header Section -->
-        <section class="space-y-xs">
+<main class="max-w-container-max mx-auto px-md py-xl space-y-xl">
+    <!-- Header Section -->
+    <section class="space-y-xs">
         <h1 class="font-headline-lg text-headline-lg text-on-surface">Hoş Geldiniz, @User.Identity.Name.ToUpper()</h1>
         <p class="font-body-lg text-body-lg text-on-surface-variant">Kurumsal e-posta yönetim sisteminizin güncel durumunu görüntüleyin.</p>
-        </section>
-        <!-- Stats Cards Grid -->
-        <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            <!-- Users Card -->
-            <div class="bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[180px]">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Toplam Kullanıcı</p>
-                        <h2 class="font-headline-md text-headline-md text-on-surface mt-xs">@ViewBag.TotalUsers</h2>
-                    </div>
+    </section>
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+   
+        <div class="bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[180px]">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Toplam Kullanıcı</p>
+                    <h2 class="font-headline-md text-headline-md text-on-surface mt-xs">@ViewBag.TotalUsers</h2>
+                </div>
                 @{
                     var percent = (double)ViewBag.UserChangePercent;
                     var isPositive = percent >= 0;
@@ -26,18 +25,36 @@
                 <span class="@(isPositive ? "bg-primary/10 text-primary" : "bg-error/10 text-error") px-xs py-1 rounded text-[10px] font-bold">
                     @(isPositive ? "+" : "")@percent%
                 </span>
-                </div>
-                <div class="h-16 w-full flex items-end gap-1">
-                    @foreach(var height in ViewBag.DailyHeights)
-                    {
+            </div>
+            <div class="h-16 w-full flex items-end gap-1">
+                @{
+                    var userHeights = ViewBag.DailyHeights as List<int>;
+                    var userCounts = ViewBag.DailyCounts as List<int>;
+                    var dayNames = new[] { "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz" };
+                }
+                @for (int i = 0; i < userHeights.Count; i++)
+                {
+                    var height = userHeights[i];
+                    var count = userCounts[i];
                     var isMax = height == 100;
-                    <div class="w-full rounded-t-sm @(isMax ? "bg-primary" : "bg-primary/10")"
-                         style="height: @height%">
+                    var displayHeight = height == 0 ? 4 : height;
+                    <div class="relative w-full group flex flex-col items-center justify-end h-full">
+                        <div class="absolute bottom-full mb-1 hidden group-hover:flex flex-col items-center z-10">
+                            <div class="bg-on-surface text-surface text-[10px] font-bold px-xs py-1 rounded whitespace-nowrap">
+                                @count kayıt
+                            </div>
+                            <div class="w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-on-surface"></div>
+                        </div>
+                        <div class="w-full rounded-t-sm @(isMax ? "bg-primary" : "bg-primary/10") transition-all"
+                             style="height: @displayHeight%">
+                        </div>
                     </div>
                 }
-                
-                </div>
             </div>
+            <div class="flex justify-between gap-1 text-[9px] text-outline-variant mt-1">
+                <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+            </div>
+        </div>
         <div class="bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[180px]">
             <div class="flex justify-between items-start">
                 <div>
@@ -53,153 +70,107 @@
                 </span>
             </div>
             <div class="h-16 w-full flex items-end gap-1">
-                @foreach (var height in ViewBag.UnreadHeights)
+                @{
+                    var unreadHeightsList = ViewBag.UnreadHeights as List<int>;
+                    var unreadCountsList = ViewBag.UnreadCounts as List<int>;
+                }
+                @for (int i = 0; i < unreadHeightsList.Count; i++)
                 {
+                    var height = unreadHeightsList[i];
+                    var count = unreadCountsList[i];
                     var isMax = height == 100;
-                    <div class="w-full rounded-t-sm @(isMax ? "bg-secondary" : "bg-secondary/10")"
-                         style="height: @height%">
+                    var displayHeight = height == 0 ? 4 : height;
+                    <div class="relative w-full group flex flex-col items-center justify-end h-full">
+                        <div class="absolute bottom-full mb-1 hidden group-hover:flex flex-col items-center z-10">
+                            <div class="bg-on-surface text-surface text-[10px] font-bold px-xs py-1 rounded whitespace-nowrap">
+                                @count mesaj
+                            </div>
+                            <div class="w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-on-surface"></div>
+                        </div>
+                        <div class="w-full rounded-t-sm @(isMax ? "bg-secondary" : "bg-secondary/10") transition-all"
+                             style="height: @displayHeight%">
+                        </div>
                     </div>
                 }
             </div>
+            <div class="flex justify-between gap-1 text-[9px] text-outline-variant mt-1">
+                <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+            </div>
         </div>
-            <!-- Active Sessions Card -->
-            <div class="bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[180px]">
-                <div class="flex justify-between items-start">
-                    <div>
-                    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Bugün Gönderilen E-Postalar</p>
-                        <h2 class="font-headline-md text-headline-md text-on-surface mt-xs">12,240</h2>
-                    </div>
-                    <span class="bg-tertiary-container text-on-tertiary-fixed-variant px-xs py-1 rounded text-[10px] font-bold">-2.4%</span>
-                </div>
-                <div class="h-16 w-full flex items-end gap-1">
-                    <div class="w-full h-full bg-tertiary/10 rounded-t-sm"></div>
-                    <div class="w-full h-2/3 bg-tertiary/10 rounded-t-sm"></div>
-                    <div class="w-full h-1/2 bg-tertiary/10 rounded-t-sm"></div>
-                    <div class="w-full h-3/4 bg-tertiary/10 rounded-t-sm"></div>
-                    <div class="w-full h-2/3 bg-tertiary/20 rounded-t-sm"></div>
-                </div>
-            </div>
-        </section>
-        <!-- Analytics & Conversation Grid -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-            <!-- Message Analytics Chart -->
-            <div class="lg:col-span-8 bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] space-y-md">
-                <div class="flex justify-between items-center">
-                <h3 class="font-title-lg text-title-lg text-on-surface">E-Posta Trafik Analizi</h3>
-                    <div class="flex gap-sm">
-                    <button class="px-sm py-1 rounded-full bg-surface-container text-primary font-label-md">Haftalık</button>
-                        <button class="px-sm py-1 rounded-full hover:bg-surface-container transition-colors font-label-md">Aylık</button>
-                    </div>
-                </div>
-                <!-- Mock Area Chart -->
-                <div class="relative h-[300px] w-full mt-lg">
-                    <div class="absolute inset-0 flex flex-col justify-between text-label-md text-outline-variant">
-                        <span class="">1.0M</span><span class="">750K</span><span class="">500K</span><span class="">250K</span><span class="">0</span>
-                    </div>
-                    <div class="ml-10 h-full w-full border-l border-b border-outline-variant/20 relative overflow-hidden">
-                        <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 800 300">
-                            <defs>
-                                <linearGradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
-                                    <stop offset="0%" stop-color="#7f30c5" stop-opacity="0.2"></stop>
-                                    <stop offset="100%" stop-color="#7f30c5" stop-opacity="0"></stop>
-                                </linearGradient>
-                            </defs>
-                            <path d="M0,250 Q100,220 200,180 T400,120 T600,160 T800,80 L800,300 L0,300 Z" fill="url(#chartGradient)"></path>
-                            <path d="M0,250 Q100,220 200,180 T400,120 T600,160 T800,80" fill="none" stroke="#7f30c5" stroke-linecap="round" stroke-width="3"></path>
-                        </svg>
-                        <!-- Chart dots -->
-                        <div class="absolute top-[80px] right-[5px] w-3 h-3 bg-primary rounded-full border-2 border-white shadow-lg"></div>
-                    </div>
-                </div>
-                <div class="flex justify-between ml-10 text-label-md text-outline-variant pt-sm">
-                    <span class="">Mon</span><span class="">Tue</span><span class="">Wed</span><span class="">Thu</span><span class="">Fri</span><span class="">Sat</span><span class="">Sun</span>
-                </div>
-            </div>
-            <!-- Recent Conversations -->
-            <div class="lg:col-span-4 bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col">
-            <h3 class="font-title-lg text-title-lg text-on-surface mb-md">Son Gelen Mesajlar</h3>
-                <div class="space-y-md flex-grow overflow-y-auto">
-                    <!-- Chat Item 1 -->
-                    <div class="flex gap-sm items-center hover:bg-surface-container-low p-sm rounded-lg transition-colors cursor-pointer group">
-                        <div class="h-10 w-10 rounded-full overflow-hidden bg-primary-fixed shrink-0">
-                            <img alt="User avatar" class="w-full h-full object-cover" data-alt="A close-up portrait of a cheerful young man with a neatly groomed beard and glasses, wearing a light blue oxford shirt. The lighting is warm and natural, suggesting a creative office environment. The style is crisp and editorial, maintaining the premium SaaS design aesthetic with clean lines and soft depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvlw3ABs1oEWJgU957BEDocKXMrPmN7mrDCV58IjYys8K1pNe-beIzJY6S_Wj00DHCpd8kDdZ_NW7MCYNzLzGVjgxMF4zK6zVnBbFdb_obQszenfvrgEs2ZhONW6O8dkAxgVlEOOQQbtwC6vWxtB71nB5fCp-_fOKNY3tnYJ8hXToIrhD2vXrC3Rr57QsGwTo29uvCBRuwbIl2a3ZX1cmEHa9D7BcruH5ybT4FIomBO__JgovhiaFyes0K_lwB0LYReLZ2nAoEaM0">
-                        </div>
-                        <div class="flex-grow">
-                            <div class="flex justify-between items-center">
-                            <span class="font-body-md font-bold text-on-surface">Muhasebe Departmanı</span>
-                                <span class="text-[10px] text-outline-variant">2m ago</span>
-                            </div>
-                            <p class="text-body-md text-on-surface-variant line-clamp-1">The Q3 analytics report is ready for your review...</p>
-                        </div>
-                        <div class="w-2 h-2 bg-primary rounded-full shrink-0 group-hover:scale-110 transition-transform"></div>
-                    </div>
-                    <!-- Chat Item 2 -->
-                    <div class="flex gap-sm items-center hover:bg-surface-container-low p-sm rounded-lg transition-colors cursor-pointer group">
-                        <div class="h-10 w-10 rounded-full overflow-hidden bg-secondary-fixed shrink-0">
-                            <img alt="User avatar" class="w-full h-full object-cover" data-alt="Portrait of a young professional woman with vibrant energy, smiling warmly at the camera. She has wavy hair and is wearing a modern teal turtleneck. The setting is a bright, minimalist studio with subtle, sophisticated shadows that create a sense of three-dimensional depth. The image is clean, high-resolution, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNW1EsaRSxF1NT5ycNpOrynSxvR3mPwiogB_sp5MDmRrljm_ZZo5XTEKiLrlNA7FsuQog91OV_AKQ-i_4_qzCd0qCB_nJaDfD6M4SEgfeRemAhz4cU0iJYlzppaP6rarkRDzty6q12rtf7Qnrkse1SXav9fEPDYuvqXbdCYPbqbWzd_7nWPHGFVykNLEHebi0PHx_DjZC_YcsD6AyQd1YEQoKYoA8NcI_Z50oD6GbCzd7X64gDPWH4UGHZtEwo68XDUT5BpfDtQ04">
-                        </div>
-                        <div class="flex-grow">
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md font-bold text-on-surface">Elena Rodriguez</span>
-                                <span class="text-[10px] text-outline-variant">15m ago</span>
-                            </div>
-                            <p class="text-body-md text-on-surface-variant line-clamp-1">New project feedback on the Dashboard UI...</p>
-                        </div>
-                    </div>
-                    <!-- Chat Item 3 -->
-                    <div class="flex gap-sm items-center hover:bg-surface-container-low p-sm rounded-lg transition-colors cursor-pointer group">
-                        <div class="h-10 w-10 rounded-full overflow-hidden bg-tertiary-fixed shrink-0">
-                            <img alt="User avatar" class="w-full h-full object-cover" data-alt="A portrait of a senior tech executive with salt-and-pepper hair, wearing a high-quality white t-shirt and a light linen blazer. The look is 'California tech minimalist.' The background is a blurred architectural space with large windows and soft daylight. The image feels authoritative, trustworthy, and elegantly composed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDynyc33htVN8UJMGD77pNFwVEWO3plUhzNhsQxaFMK5OqA49VXduZhcbGWOGuBq3G_LGQXgeeemXpkoiCmfyaHUT75MkQn_oVjp5tENyd7n9RFZmSRPszPu-lZVn34iK7aEo-pqv50S8w6lmc3QA_ueKf3x3SmuDYBHsPS8ZoempoeDocwGVCViY0464ZZAsHDEBFQmp4MsMX7PyTac78nh4ZT_xkH49yeVRY9NZ_54dO6bjZB26yzz-WFtjUdUYu--FegpY6RQQE">
-                        </div>
-                        <div class="flex-grow">
-                            <div class="flex justify-between items-center">
-                                <span class="font-body-md font-bold text-on-surface">Marcus Chen</span>
-                                <span class="text-[10px] text-outline-variant">1h ago</span>
-                            </div>
-                            <p class="text-body-md text-on-surface-variant line-clamp-1">Could we sync on the upcoming API integration?</p>
-                        </div>
-                        <div class="w-2 h-2 bg-primary rounded-full shrink-0 group-hover:scale-110 transition-transform"></div>
-                    </div>
-                </div>
-                <button class="mt-md w-full py-sm border border-outline-variant/30 rounded-xl font-label-md text-primary hover:bg-primary/5 transition-all">Tüm Mesajları Gör</button>
-            </div>
-        </section>
-        <!-- Bottom Featured Section: Bento Grid Concept -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
-            <div class="md:col-span-2 bg-gradient-to-br from-primary to-secondary p-md rounded-xl text-white flex flex-col justify-between shadow-lg">
-                <div class="space-y-sm">
-                <h4 class="font-title-lg text-title-lg font-bold">Sistem Duyurusu</h4>
-                <p class="opacity-80 font-body-md">Yeni güvenlik güncellemeleri yayınlandı. Sistem performansını artırmak için güncellemeleri inceleyebilirsiniz.</p>
-                </div>
-            <button class="w-fit mt-md px-md py-sm bg-white text-primary rounded-lg font-bold hover:scale-105 active:scale-95 transition-all shadow-sm">Detayları Görüntüle</button>
-            </div>
-            <div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border-l-4 border-secondary flex flex-col justify-center">
-                <span class="material-symbols-outlined text-secondary text-3xl mb-xs" data-icon="auto_awesome">auto_awesome</span>
-            <p class="font-label-md text-on-surface-variant uppercase tracking-widest">Akıllı Öneri</p>
-            <p class="font-body-md font-bold text-on-surface mt-xs">Son 7 gün içerisinde e-posta yoğunluğu en çok 14:00 - 16:00 saatleri arasında gerçekleşti.</p>
-            </div>
-            <div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
-                <div class="flex items-center gap-sm">
-                    <span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
-                    <span class="font-title-lg font-bold">42</span>
-                </div>
-            <p class="font-body-md text-on-surface-variant">12 departmanda toplam 42 aktif kullanıcı bulunmaktadır..</p>
-                <div class="flex -space-x-2 mt-sm">
-                    <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-200"><img class="object-cover w-full h-full" data-alt="Small avatar of team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlsYOPV6oBzR4yRV6WfnR4tFcFdAjBKQZLY4cUJsDyed2FhaeIjYjsQgKpwJbxmtdLnFDVrXbXPa6l6qLr45nc13t7O_PSfNiukgqr8EgxirscDyV-cvvMc8qQKcKgUbzsryU5zPq3I5IhHLZ5vIy0oIqQEhEaIhAWFODeoQeD5rg4mDLaptQ8BijH6DjTx8GcThPKrxft6FoEOzXUFCXsBQoYTkDnQeBioaBqG6foAWBRyFfqQYS690ubiPbozpxMNZfdNOYAKxw"></div>
-                    <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-200"><img class="object-cover w-full h-full" data-alt="Small avatar of team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjTG6iDkZPglIXvB8uFCPqgfzaaq3YIjl7lfsKC2UuV5G36ak2R7E6Nbjc_sp01TF3pWeN7Dq7UXuJQcbrRsUyTOrPjzuAgb8hV1JcddgYj6gDTy71AZvzW3GEjip7Dggplqj9ZCnVmY2rzYNbyDMWfjqsrCErtb1aRFezWR5CmwO2uMtr_wk7_v_uqRiRyLgKZDuFCxV2yhYbg1Pyc2VFmWVPIYQAckYt98MtnG6j7q1mpugf5kbl1Xx-hFBHyRYY4WDbt-_pRHM"></div>
-                    <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-200"><img class="object-cover w-full h-full" data-alt="Small avatar of team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKT9rx0Nl9QNvXHdRlaWg3OMMdyhSiuI2bjk7ahwtFp6d8rJxmJonVBoUv1lT0QefUI1jDfOAyf00D9bQTM0olNKsSnjclTUaQnAY6Kb0LlmrxhA63ufLv9mjA821nzIBDKCpwbGXIT1toselRytHLTG7VQ6xhg8G6rFekJ-rY_7f8weMUOieM4pV3AdLEWvj2YHSZhgOxP64z8bnQZbPMTyxeC_mCTFEUDMKfRKauUWOMzmQC2bpqQrm5GBziwN3Ek24lLZjd6XQ"></div>
-                    <div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+39</div>
-                </div>
-            </div>
-        </section>
-    </main>
     
-    <!-- FAB (Contextual for Dashboard) -->
-    <button class="fixed bottom-lg right-lg h-14 w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
-        <span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">add</span>
-    </button>
+        <div class="bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between h-[180px]">
+            <div class="flex justify-between items-start">
+                <div>
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Bugün Gönderilen E-Posta Sayısı</p>
+                    <h2 class="font-headline-md text-headline-md text-on-surface mt-xs">@ViewBag.TodaySent</h2>
+                </div>
+                @{
+                    var sentPercent = (double)ViewBag.SentChangePercent;
+                    var sentPositive = sentPercent >= 0;
+                }
+                <span class="@(sentPositive ? "bg-tertiary-container text-on-tertiary-fixed-variant" : "bg-error/10 text-error") px-xs py-1 rounded text-[10px] font-bold">
+                    @(sentPositive ? "+" : "")@sentPercent%
+                </span>
+            </div>
+            <div class="h-16 w-full flex items-end gap-1">
+                @{
+                    var sentHeightsList = ViewBag.SentHeights as List<int>;
+                    var sentCountsList = ViewBag.SentCounts as List<int>;
+                }
+                @for (int i = 0; i < sentHeightsList.Count; i++)
+                {
+                    var height = sentHeightsList[i];
+                    var count = sentCountsList[i];
+                    var isMax = height == 100;
+                    var displayHeight = height == 0 ? 4 : height;
+                    <div class="relative w-full group flex flex-col items-center justify-end h-full">
+                        <div class="absolute bottom-full mb-1 hidden group-hover:flex flex-col items-center z-10">
+                            <div class="bg-on-surface text-surface text-[10px] font-bold px-xs py-1 rounded whitespace-nowrap">
+                                @count e-posta
+                            </div>
+                            <div class="w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-on-surface"></div>
+                        </div>
+                        <div class="w-full rounded-t-sm @(isMax ? "bg-tertiary" : "bg-tertiary/10") transition-all"
+                             style="height: @displayHeight%">
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="flex justify-between gap-1 text-[9px] text-outline-variant mt-1">
+                <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+            </div>
+        </div>
+    </section>
+    <!-- Analytics & Conversation Grid -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <!-- Message Analytics Chart -->
+        <div class="lg:col-span-8 bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] space-y-md">
+            <div class="flex justify-between items-center">
+                <h3 class="font-title-lg text-title-lg text-on-surface">E-Posta Trafik Analizi</h3>
+                <div class="flex gap-sm">
+                    <button id="weeklyBtn" class="px-sm py-1 rounded-full bg-surface-container text-primary font-label-md">Günlük</button>
+                    <button id="monthlyBtn" class="px-sm py-1 rounded-full hover:bg-surface-container transition-colors font-label-md">Aylık</button>
+                </div>
+            </div>
+            <div class="relative h-[300px] w-full mt-lg">
+                <canvas id="trafficChart"></canvas>
+            </div>
+        </div>
+
+      @await Component.InvokeAsync("DashboardStatic")
+    </section>
+   @await Component.InvokeAsync("DashboardData")
+</main>
+
+<!-- FAB (Contextual for Dashboard) -->
+<button class="fixed bottom-lg right-lg h-14 w-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+    <span class="material-symbols-outlined text-2xl group-hover:rotate-90 transition-transform">add</span>
+</button>
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+
         // Micro-interactions and subtle effects
         document.querySelectorAll('.bg-white').forEach(card => {
         card.addEventListener('mouseenter', () => {
@@ -211,6 +182,59 @@
         card.style.transform = 'translateY(0)';
         card.style.boxShadow = '0px 4px 20px rgba(0, 0, 0, 0.03)';
         });
+        });
+        const weeklyData = @Html.Raw(Json.Serialize(ViewBag.WeeklyMessageCounts));
+        const monthlyData = @Html.Raw(Json.Serialize(ViewBag.MonthlyMessageCounts));
+        const weeklyLabels = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+        const monthlyLabels = @Html.Raw(Json.Serialize(ViewBag.MonthlyLabels));
+
+        const ctx = document.getElementById('trafficChart');
+        const trafficChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+        labels: weeklyLabels,
+        datasets: [{
+        label: 'Mesaj Sayısı',
+        data: weeklyData,
+        borderColor: '#7f30c5',
+        backgroundColor: 'rgba(127, 48, 197, 0.1)',
+        borderWidth: 3,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 4,
+        pointBackgroundColor: '#7f30c5',
+        pointBorderColor: '#ffffff',
+        pointBorderWidth: 2
+        }]
+        },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, grid: { color: 'rgba(0,0,0,0.05)' } },
+        x: { grid: { display: false } }
+        }
+        }
+        });
+
+        const weeklyBtn = document.getElementById('weeklyBtn');
+        const monthlyBtn = document.getElementById('monthlyBtn');
+
+        weeklyBtn.addEventListener('click', () => {
+        trafficChart.data.labels = weeklyLabels;
+        trafficChart.data.datasets[0].data = weeklyData;
+        trafficChart.update();
+        weeklyBtn.classList.add('bg-surface-container', 'text-primary');
+        monthlyBtn.classList.remove('bg-surface-container', 'text-primary');
+        });
+
+        monthlyBtn.addEventListener('click', () => {
+        trafficChart.data.labels = monthlyLabels;
+        trafficChart.data.datasets[0].data = monthlyData;
+        trafficChart.update();
+        monthlyBtn.classList.add('bg-surface-container', 'text-primary');
+        weeklyBtn.classList.remove('bg-surface-container', 'text-primary');
         });
     </script>
 }

@@ -1,0 +1,54 @@
+﻿@model List<IdentityEmail.Entities.UserMessage>
+
+<div class="lg:col-span-4 bg-white rounded-xl p-md shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col">
+    <h3 class="font-title-lg text-title-lg text-on-surface mb-md">Son Gelen Mesajlar</h3>
+
+    <div class="space-y-md flex-grow overflow-y-auto">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var message in Model)
+            {
+                <div class="flex gap-sm items-center hover:bg-surface-container-low p-sm rounded-lg transition-colors cursor-pointer group">
+                    <div class="h-10 w-10 rounded-full overflow-hidden bg-primary-fixed shrink-0">
+                        <img src="@(string.IsNullOrEmpty(message.Sender?.ImageUrl)
+                                                                  ? "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png"
+                                                                  : message.Sender.ImageUrl)"
+                             class="w-full h-full object-cover"
+                             alt="@(message.Sender?.Name) profil fotoğrafı">
+                    </div>
+
+                    <div class="flex-grow min-w-0">
+                        <div class="flex justify-between items-center gap-sm">
+                            <span class="font-body-md font-bold text-on-surface truncate">
+                                @message.Sender?.Name @message.Sender?.Surname
+                            </span>
+                            <span class="text-[10px] text-outline-variant whitespace-nowrap">
+                                @message.SentAt.ToString("dd.MM.yyyy")
+                            </span>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(message.Sender?.JobTitle))
+                        {
+                            <div class="text-xs text-primary mb-1">@message.Sender.JobTitle</div>
+                        }
+
+                        <p class="text-body-md text-on-surface-variant line-clamp-1">@message.Body</p>
+                    </div>
+
+                    @if (!message.IsRead)
+                    {
+                        <div class="w-2 h-2 bg-primary rounded-full shrink-0 group-hover:scale-110 transition-transform"></div>
+                    }
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-body-md text-on-surface-variant text-center py-md">Henüz mesaj bulunmuyor.</p>
+        }
+    </div>
+
+    <a href="/Message/Inbox" class="mt-md w-full py-sm border border-outline-variant/30 rounded-xl font-label-md text-primary hover:bg-primary/5 transition-all text-center block">
+        Tüm Mesajları Gör
+    </a>
+</div>

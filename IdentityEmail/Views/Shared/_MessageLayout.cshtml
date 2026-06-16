@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="tr">
+@await Component.InvokeAsync("MessageHead")
+<body class="bg-surface-container-lowest text-on-surface min-h-screen flex flex-col">
+
+    <!-- TopNavBar -->
+    @await Component.InvokeAsync("MessageNavbar")
+    <div class="flex flex-1 h-screen overflow-visible">
+        <!-- SideNavBar -->
+        @await Component.InvokeAsync("MessageSidebar")
+
+        <!-- Main Content Area -->
+        @RenderBody()
+    </div>
+
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        document.getElementById('notifBtn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('notifDropdown').classList.toggle('hidden');
+            document.getElementById('profileDropdown').classList.add('hidden');
+        });
+
+        document.getElementById('profileBtn')?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.getElementById('profileDropdown').classList.toggle('hidden');
+            document.getElementById('notifDropdown').classList.add('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            document.getElementById('notifDropdown')?.classList.add('hidden');
+            document.getElementById('profileDropdown')?.classList.add('hidden');
+        });
+                    function toggleRead(id, btn) {
+                fetch('/Message/ToggleRead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'id=' + id
+                })
+                .then(res => res.json())
+                .then(data => {
+                    location.reload();
+                });
+            }
+    </script>
+</body>
+</html>

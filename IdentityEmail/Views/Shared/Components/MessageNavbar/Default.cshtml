@@ -2,8 +2,11 @@
     <div class="flex justify-between items-center h-full px-md max-w-container-max mx-auto w-full">
         <!-- Brand & Search -->
         <div class="flex items-center gap-xl">
-            <span class="font-headline-md text-headline-md font-bold text-primary"><span style="letter-spacing: -0.6px; text-align: center; background-color: rgb(245, 247, 251);" class="">Yudi</span></span>
-            <div class="hidden md:flex items-center bg-[#eceef3] px-sm py-xs rounded-xl w-[320px]">
+            <a href="/Dashboard/Index"
+               style="letter-spacing: -0.6px; text-align: center;"
+               class="font-headline-md text-headline-md font-bold text-primary">
+                Yudi
+            </a>            <div class="hidden md:flex items-center bg-[#eceef3] px-sm py-xs rounded-xl w-[320px]">
                 <span class="material-symbols-outlined text-outline mr-xs">search</span>
                 <input class="bg-transparent border-none focus:ring-0 text-body-md w-full placeholder:text-outline-variant" placeholder="Arama..." type="text">
             </div>
@@ -12,7 +15,7 @@
         <nav class="hidden md:flex items-center gap-md">
             <a class="font-body-md text-body-md text-primary font-bold relative active-dot transition-colors duration-200" href="/Dashboard/Index">Ana Sayfa</a>
 
-            <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="/Message/Inbox">Mesaj Kutusu</a>
+        <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="/Message/Inbox">Mesaj Kutusu</a>
 
         </nav>
         <!-- Actions -->
@@ -43,7 +46,7 @@
                         }
                     </div>
                     <div class="p-sm border-t border-outline-variant/20">
-                        <a href="/Message/Inbox" class="flex items-center justify-center gap-xs font-label-md text-label-md text-primary hover:text-secondary">
+                    <a href="/Message/Inbox" class="flex items-center justify-center gap-xs font-label-md text-label-md text-primary hover:text-secondary">
                             Gelen Kutusu
                             <span class="material-symbols-outlined text-sm">chevron_right</span>
                         </a>
@@ -66,7 +69,7 @@
                         </div>
                         <div>
                             <p class="font-body-md font-bold text-on-surface">@User.Identity.Name</p>
-                         
+
                         </div>
                     </div>
                     <div class="p-xs">
@@ -74,7 +77,7 @@
                             <span class="material-symbols-outlined text-outline text-[20px]">person</span>
                             Profilim
                         </a>
-                        <a href="/Message/Inbox" class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-on-surface">
+                    <a href="/Message/Inbox" class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-container-low transition-colors font-body-md text-on-surface">
                             <span class="material-symbols-outlined text-outline text-[20px]">inbox</span>
                             Gelen Kutusu
                         </a>

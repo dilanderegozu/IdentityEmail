@@ -1,0 +1,73 @@
+﻿@model IdentityEmail.Entities.UserMessage
+@{
+    ViewData["Title"] = "Mesaj Detayı";
+    Layout = "_MessageLayout";
+}
+
+<main class="flex-1 flex flex-col bg-surface overflow-visible relative">
+    <div class="h-16 flex items-center justify-between px-md border-b border-outline-variant/20 bg-white/40 glass">
+        <div class="flex items-center gap-md">
+            <a href="javascript:history.back()" class="p-sm text-on-surface-variant hover:bg-surface-container rounded-lg transition-all">
+                <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+            </a>
+            <h2 class="font-headline-md text-headline-md text-on-surface-variant">@Model.Subject</h2>
+        </div>
+        <div class="flex items-center gap-xs">
+            <button onclick="archiveAndBack(@Model.Id)" class="p-sm text-on-surface-variant hover:bg-surface-container rounded-lg transition-all" title="Arşivle">
+                <span class="material-symbols-outlined text-[20px]">archive</span>
+            </button>
+            <button class="p-sm text-on-surface-variant hover:bg-surface-container rounded-lg transition-all" title="Bildir">
+                <span class="material-symbols-outlined text-[20px]">report</span>
+            </button>
+            <button onclick="deleteAndBack(@Model.Id)" class="p-sm text-error hover:bg-error-container/20 rounded-lg transition-all" title="Sil">
+                <span class="material-symbols-outlined text-[20px]">delete</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-lg">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] p-lg">
+            <div class="flex items-start justify-between mb-md">
+                <div class="flex items-center gap-sm">
+                    <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center font-bold text-primary text-lg border border-outline-variant/20">
+                        @(Model.Sender?.Name?.Substring(0, 1) ?? "?")
+                    </div>
+                    <div>
+                        <p class="font-title-lg text-sm text-on-surface">@Model.Sender?.Name @Model.Sender?.Surname</p>
+                        <p class="text-xs text-outline">@Model.Sender?.Email</p>
+                    </div>
+                </div>
+                <p class="text-xs text-outline">@Model.SentAt.ToString("dd MMMM yyyy, HH:mm")</p>
+            </div>
+
+            @if (Model.Category != null)
+            {
+                <span class="bg-primary/10 text-primary text-[10px] font-bold px-sm py-xs rounded-md inline-block mb-md">@Model.Category.Name</span>
+            }
+
+            <div class="border-t border-outline-variant/20 pt-md">
+                <p class="text-body-md text-on-surface whitespace-pre-line">@Model.Body</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        function deleteAndBack(id) {
+            fetch('/Message/DeleteMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'id=' + id
+            }).then(() => window.location.href = '/Message/Inbox');
+        }
+
+        function archiveAndBack(id) {
+            fetch('/Message/ArchiveMessage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'id=' + id
+            }).then(() => window.location.href = '/Message/Inbox');
+        }
+    </script>
+}

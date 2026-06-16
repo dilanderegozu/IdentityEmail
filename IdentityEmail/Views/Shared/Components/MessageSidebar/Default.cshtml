@@ -1,0 +1,149 @@
+﻿@model IdentityEmail.Models.ViewModels.MessageSidebarViewModel
+<aside class="h-full w-64 flex flex-col bg-surface-container-low/50 glass border-r border-white/20">
+    <div class="flex flex-col gap-sm p-md pt-md flex-1 overflow-y-auto">
+
+        <div class="flex items-center gap-sm mb-md px-xs">
+            <div class="h-10 w-10 rounded-xl bg-primary flex items-center justify-center text-white">
+                <span class="material-symbols-outlined">workspace_premium</span>
+            </div>
+            <div>
+                <p class="font-headline-md text-sm font-bold text-primary leading-tight">Çalışma Alanı</p>
+                <p class="font-label-md text-label-md text-on-surface-variant">Ücretli Plan</p>
+            </div>
+        </div>
+
+        <button class="w-full py-sm px-md bg-gradient-to-r from-primary to-secondary text-white rounded-xl font-title-lg text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-xs mb-sm">
+            <span class="material-symbols-outlined text-[20px]">add_circle</span>
+            Oluştur
+        </button>
+
+        <!-- KLASÖRLER -->
+        <div>
+            <p class="font-label-md text-label-md text-outline uppercase px-sm mb-xs mt-sm tracking-wider">Klasörler</p>
+            <nav class="flex flex-col gap-[2px]">
+
+                @{
+                    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+                    string FolderClasses(string action) =>
+                        currentAction == action
+                            ? "flex items-center justify-between px-sm py-[10px] rounded-lg bg-primary/10"
+                            : "flex items-center justify-between px-sm py-[10px] rounded-lg hover:bg-surface-container-high transition-colors";
+
+                    string LabelClasses(string action) =>
+                        currentAction == action
+                            ? "flex items-center gap-sm text-sm font-bold text-primary"
+                            : "flex items-center gap-sm text-sm text-on-surface";
+
+                    string IconClasses(string action) =>
+                        currentAction == action
+                            ? "material-symbols-outlined text-[18px] text-primary"
+                            : "material-symbols-outlined text-[18px] text-outline";
+
+                    string CountClasses(string action, int count) =>
+                        count == 0
+                            ? "text-xs text-outline"
+                            : currentAction == action
+                                ? "text-xs font-bold bg-white text-primary px-sm py-[2px] rounded-full min-w-[22px] text-center"
+                                : "text-xs font-bold bg-surface-container-high text-on-surface-variant px-sm py-[2px] rounded-full min-w-[22px] text-center";
+                }
+
+                <a asp-controller="Message" asp-action="Inbox" class="@FolderClasses("Inbox")">
+                    <span class="@LabelClasses("Inbox")">
+                        <span class="@IconClasses("Inbox")">inbox</span>
+                        Gelen Kutusu
+                    </span>
+                    <span class="@CountClasses("Inbox", Model.InboxCount)">@Model.InboxCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Starred" class="@FolderClasses("Starred")">
+                    <span class="@LabelClasses("Starred")">
+                        <span class="@IconClasses("Starred")">star</span>
+                        Yıldızlı
+                    </span>
+                    <span class="@CountClasses("Starred", Model.StarredCount)">@Model.StarredCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Draft" class="@FolderClasses("Draft")">
+                    <span class="@LabelClasses("Draft")">
+                        <span class="@IconClasses("Draft")">draft</span>
+                        Taslaklar
+                    </span>
+                    <span class="@CountClasses("Draft", Model.DraftCount)">@Model.DraftCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Sent" class="@FolderClasses("Sent")">
+                    <span class="@LabelClasses("Sent")">
+                        <span class="@IconClasses("Sent")">send</span>
+                        Gönderilmiş
+                    </span>
+                    <span class="@CountClasses("Sent", Model.SentCount)">@Model.SentCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Schedule" class="@FolderClasses("Schedule")">
+                    <span class="@LabelClasses("Schedule")">
+                        <span class="@IconClasses("Schedule")">schedule</span>
+                        Planlanmış
+                    </span>
+                    <span class="@CountClasses("Schedule", Model.ScheduleCount)">@Model.ScheduleCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Archive" class="@FolderClasses("Archive")">
+                    <span class="@LabelClasses("Archive")">
+                        <span class="@IconClasses("Archive")">archive</span>
+                        Arşiv
+                    </span>
+                    <span class="@CountClasses("Archive", Model.ArchiveCount)">@Model.ArchiveCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Spam" class="@FolderClasses("Spam")">
+                    <span class="@LabelClasses("Spam")">
+                        <span class="@IconClasses("Spam")">report</span>
+                        Spam
+                    </span>
+                    <span class="@CountClasses("Spam", Model.SpamCount)">@Model.SpamCount</span>
+                </a>
+
+                <a asp-controller="Message" asp-action="Trash" class="@FolderClasses("Trash")">
+                    <span class="@LabelClasses("Trash")">
+                        <span class="@IconClasses("Trash")">delete</span>
+                        Çöp Kutusu
+                    </span>
+                    <span class="@CountClasses("Trash", Model.TrashCount)">@Model.TrashCount</span>
+                </a>
+
+            </nav>
+        </div>
+
+   
+        <!-- ETİKETLER -->
+        <div class="mt-md pt-md border-t border-outline-variant/30">
+            <p class="font-label-md text-label-md text-outline uppercase px-sm mb-xs tracking-wider">Etiketler</p>
+            <div class="flex flex-col gap-[2px]">
+                @foreach (var item in Model.Categories)
+                {
+                    <a asp-controller="Message" asp-action="Category" asp-route-id="@item.Id"
+                       class="flex items-center justify-between px-sm py-[10px] rounded-lg hover:bg-surface-container-high transition-colors">
+                        <span class="flex items-center gap-sm text-sm text-on-surface">
+                            <span class="w-2 h-2 rounded-full bg-@(item.Color) shrink-0"></span>
+                            @item.Name
+                        </span>
+                        <span class="text-xs text-outline">@item.Messages.Count</span>
+                    </a>
+                }
+            </div>
+        </div>
+
+    </div>
+
+    <div class="p-md border-t border-outline-variant/30 flex flex-col gap-xs">
+        <button class="flex items-center gap-sm w-full px-sm py-[10px] text-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
+            <span class="material-symbols-outlined text-[18px]">contact_support</span>
+            Destek
+        </button>
+        <button class="flex items-center gap-sm w-full px-sm py-[10px] text-sm text-error hover:bg-error-container/20 rounded-lg transition-colors">
+            <span class="material-symbols-outlined text-[18px]">logout</span>
+            Çıkış Yap
+        </button>
+    </div>
+</aside>

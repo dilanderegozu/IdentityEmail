@@ -1,0 +1,28 @@
+﻿@model int
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+    <div class="md:col-span-2 bg-gradient-to-br from-primary to-secondary p-md rounded-xl text-white flex flex-col justify-between shadow-lg">
+        <div class="space-y-sm">
+            <h4 class="font-title-lg text-title-lg font-bold">Sistem Duyurusu</h4>
+            <p class="opacity-80 font-body-md">Yeni güvenlik güncellemeleri yayınlandı. Sistem performansını artırmak için güncellemeleri inceleyebilirsiniz.</p>
+        </div>
+        <button class="w-fit mt-md px-md py-sm bg-white text-primary rounded-lg font-bold hover:scale-105 active:scale-95 transition-all shadow-sm">Detayları Görüntüle</button>
+    </div>
+    <div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] border-l-4 border-secondary flex flex-col justify-center">
+        <span class="material-symbols-outlined text-secondary text-3xl mb-xs" data-icon="auto_awesome">auto_awesome</span>
+        <p class="font-label-md text-on-surface-variant uppercase tracking-widest">Akıllı Öneri</p>
+        <p class="font-body-md font-bold text-on-surface mt-xs">Son 7 gün içerisinde e-posta yoğunluğu en çok @(Model.ToString("00")):00 - @(Model.ToString("00")):59 saatleri arasında gerçekleşti.</p>
+    </div>
+    <div class="bg-white p-md rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+        <div class="flex items-center gap-sm">
+            <span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+            <span class="font-title-lg font-bold">@ViewBag.TotalUser</span>
+        </div>
+        <p class="font-body-md text-on-surface-variant">@ViewBag.TotalDepartman departmanda toplam @ViewBag.TotalUser aktif kullanıcı bulunmaktadır..</p>
+        <div class="flex -space-x-2 mt-sm">
+            <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-200"><img class="object-cover w-full h-full" data-alt="Small avatar of team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlsYOPV6oBzR4yRV6WfnR4tFcFdAjBKQZLY4cUJsDyed2FhaeIjYjsQgKpwJbxmtdLnFDVrXbXPa6l6qLr45nc13t7O_PSfNiukgqr8EgxirscDyV-cvvMc8qQKcKgUbzsryU5zPq3I5IhHLZ5vIy0oIqQEhEaIhAWFODeoQeD5rg4mDLaptQ8BijH6DjTx8GcThPKrxft6FoEOzXUFCXsBQoYTkDnQeBioaBqG6foAWBRyFfqQYS690ubiPbozpxMNZfdNOYAKxw"></div>
+            <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-200"><img class="object-cover w-full h-full" data-alt="Small avatar of team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjTG6iDkZPglIXvB8uFCPqgfzaaq3YIjl7lfsKC2UuV5G36ak2R7E6Nbjc_sp01TF3pWeN7Dq7UXuJQcbrRsUyTOrPjzuAgb8hV1JcddgYj6gDTy71AZvzW3GEjip7Dggplqj9ZCnVmY2rzYNbyDMWfjqsrCErtb1aRFezWR5CmwO2uMtr_wk7_v_uqRiRyLgKZDuFCxV2yhYbg1Pyc2VFmWVPIYQAckYt98MtnG6j7q1mpugf5kbl1Xx-hFBHyRYY4WDbt-_pRHM"></div>
+            <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-200"><img class="object-cover w-full h-full" data-alt="Small avatar of team member." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKT9rx0Nl9QNvXHdRlaWg3OMMdyhSiuI2bjk7ahwtFp6d8rJxmJonVBoUv1lT0QefUI1jDfOAyf00D9bQTM0olNKsSnjclTUaQnAY6Kb0LlmrxhA63ufLv9mjA821nzIBDKCpwbGXIT1toselRytHLTG7VQ6xhg8G6rFekJ-rY_7f8weMUOieM4pV3AdLEWvj2YHSZhgOxP64z8bnQZbPMTyxeC_mCTFEUDMKfRKauUWOMzmQC2bpqQrm5GBziwN3Ek24lLZjd6XQ"></div>
+            <div class="w-8 h-8 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+39</div>
+        </div>
+    </div>
+</section>
