@@ -130,6 +130,26 @@ Kullanıcılar kendilerine gönderilen güvenli bağlantı üzerinden yeni parol
 <img width="1618" height="358" alt="Reset Password" src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-06-18%20021853.png" />
 
 ---
+## 🔔 Gerçek Zamanlı Bildirim ve Profil Yönetimi
+
+### 📸 Bildirim Merkezi ve Kullanıcı İşlemleri
+
+Kullanıcı deneyimini geliştirmek amacıyla sistem içerisinde dinamik bildirim yönetimi ve hızlı erişim özellikleri geliştirilmiştir. Kullanıcılar gelen mesajlarını anlık olarak takip edebilir, profil işlemlerini tek bir noktadan yönetebilir ve güvenli oturum işlemlerini gerçekleştirebilir.
+
+### Özellikler
+
+* ✅ **Gerçek Zamanlı Bildirim Sistemi:** Gelen kutusundaki son okunmamış mesajlar navbar üzerinden anlık olarak görüntülenir.
+* ✅ **Akıllı Bildirim Merkezi:** Kullanıcılara son 3 okunmamış mesajın özeti ve ilgili mesajlara hızlı erişim imkânı sunulur.
+* ✅ **Profil Yönetimi:** Kullanıcılar profil bilgilerini görüntüleyebilir ve düzenleme ekranına hızlı şekilde erişebilir.
+* ✅ **Hızlı İşlem Menüsü:** Profil, gelen kutusu ve güvenli çıkış (Logout) işlemleri tek bir kullanıcı menüsü altında toplanmıştır.
+* ✅ **Dinamik Kullanıcı Bilgileri:** Oturum açan kullanıcının adı, soyadı ve profil fotoğrafı sistem genelinde otomatik olarak görüntülenir.
+* ✅ **Kişiselleştirilmiş Arayüz:** Kullanıcıya ait bilgiler tüm sayfalarda dinamik olarak yüklenerek daha kişisel bir deneyim sunulur.
+* ✅ **Güvenli Oturum Sonlandırma:** ASP.NET Identity altyapısı kullanılarak güvenli çıkış işlemi gerçekleştirilir.
+
+<img width="392" height="310" alt="Notification Center" src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/mesajbox" />
+
+<img width="383" height="448" alt="Profile Menu" src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-06-18%20014414.png" />
+
 
 # 🛠️ Kullanılan Teknolojiler
 
