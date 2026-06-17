@@ -5,6 +5,37 @@ Bu proje, **ASP.NET Core** ve **ASP.NET Identity** teknolojileri kullanılarak g
 Kullanıcı güvenliğini ön planda tutan proje; iki aşamalı doğrulama (2FA), SMTP entegrasyonu, token tabanlı parola yenileme sistemi ve modern yönetim paneli tasarımı ile kurumsal uygulamalarda kullanılabilecek güçlü bir altyapı sunmaktadır.
 
 ---
+# 🛠️ Kullanılan Teknolojiler
+
+* ASP.NET Core
+* ASP.NET Identity
+* Entity Framework Core
+* SQL Server
+* MailKit
+* MimeKit
+* AJAX
+* jQuery
+* Bootstrap
+* HTML5
+* CSS3
+* JavaScript
+
+---
+
+# 🎯 Projede Gerçekleştirilen Temel Özellikler
+
+* Kullanıcı Kayıt Sistemi
+* E-Posta Doğrulama Mekanizması
+* İki Aşamalı Doğrulama (2FA)
+* Profil Fotoğrafı Yükleme
+* Güvenli Kimlik Doğrulama
+* Kalıcı Oturum Yönetimi
+* Şifre Kurtarma Sistemi
+* Token Tabanlı Şifre Yenileme
+* AJAX Tabanlı Form İşlemleri
+* Responsive Yönetim Paneli
+* SMTP Mail Servisi Entegrasyonu
+* ASP.NET Identity Kullanıcı Yönetimi
 
 # 🔐 Kullanıcı Kayıt ve Güvenlik Süreci (Register & 2FA)
 
@@ -171,35 +202,103 @@ Kullanıcı deneyimini geliştirmek amacıyla sistem içerisinde dinamik bildiri
 
 <img width="383" height="448" alt="Profile Menu" src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-06-18%20014414.png" />
 
+---
 
-# 🛠️ Kullanılan Teknolojiler
+## ✉️ Mesaj Yönetimi ve İletişim Sistemi
 
-* ASP.NET Core
-* ASP.NET Identity
-* Entity Framework Core
-* SQL Server
-* MailKit
-* MimeKit
-* AJAX
-* jQuery
-* Bootstrap
-* HTML5
-* CSS3
-* JavaScript
+### 📸 Yeni Mesaj Oluşturma
+
+Kullanıcıların sistem içerisindeki diğer kullanıcılara kolayca mesaj gönderebilmesi için gelişmiş bir mesaj oluşturma ekranı geliştirilmiştir.
+
+### Özellikler
+
+* ✅ Alıcı arama ve seçim desteği
+* ✅ Kategori bazlı mesaj sınıflandırma
+* ✅ Zengin metin editörü (Rich Text Editor)
+* ✅ Dosya ve görsel ekleme desteği
+* ✅ Taslak olarak kaydetme özelliği
+* ✅ Güvenli mesaj gönderim altyapısı
+* ✅ Kullanıcı dostu ve modern arayüz
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/createmessage" alt="Yeni Mesaj Oluşturma" />
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/createmessage2" alt="Yeni Mesaj Oluşturma" />
 
 ---
 
-# 🎯 Projede Gerçekleştirilen Temel Özellikler
+### 📄 Taslak Yönetimi
 
-* Kullanıcı Kayıt Sistemi
-* E-Posta Doğrulama Mekanizması
-* İki Aşamalı Doğrulama (2FA)
-* Profil Fotoğrafı Yükleme
-* Güvenli Kimlik Doğrulama
-* Kalıcı Oturum Yönetimi
-* Şifre Kurtarma Sistemi
-* Token Tabanlı Şifre Yenileme
-* AJAX Tabanlı Form İşlemleri
-* Responsive Yönetim Paneli
-* SMTP Mail Servisi Entegrasyonu
-* ASP.NET Identity Kullanıcı Yönetimi
+Kullanıcılar göndermeden önce oluşturdukları mesajları taslak olarak saklayabilir ve daha sonra düzenleyebilirler.
+
+### Özellikler
+
+* ✅ Taslak mesaj oluşturma
+* ✅ Taslak güncelleme ve düzenleme
+* ✅ Kategori bazlı taslak yönetimi
+* ✅ Otomatik içerik yükleme
+* ✅ Güvenli veri saklama
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/taslakduzenle" alt="Taslak Listesi" />
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/taslak" alt="Taslak Düzenleme" />
+
+
+
+---
+
+### 📥 Gelen Kutusu Yönetimi
+
+Sistem içerisinde alınan mesajların düzenli ve kolay yönetilebilmesi amacıyla gelişmiş bir gelen kutusu yapısı oluşturulmuştur.
+
+### Özellikler
+
+* ✅ Kategori bazlı mesaj görüntüleme
+* ✅ Okunmamış mesaj takibi
+* ✅ Yıldızlı mesaj sistemi
+* ✅ Mesaj filtreleme ve arama
+* ✅ Klasör bazlı organizasyon
+* ✅ Responsive gelen kutusu tasarımı
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/gelenkutusu" alt="Gelen Kutusu" />
+
+## 👤 Profil Yönetimi ve Kullanıcı Hesabı
+
+### 📸 Profil Sayfası
+
+Kullanıcıların kişisel bilgilerini görüntüleyebileceği ve hesap durumlarını takip edebileceği kapsamlı bir profil yönetim ekranı geliştirilmiştir.
+
+### Özellikler
+
+* ✅ Profil fotoğrafı yönetimi
+* ✅ Kapak fotoğrafı desteği
+* ✅ Profil tamamlama yüzdesi
+* ✅ Aktivite özeti ve istatistikler
+* ✅ Kullanıcı bilgileri görüntüleme
+* ✅ Kişisel web sitesi ve iletişim bilgileri
+* ✅ Hesap durumunun takip edilmesi
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil0" alt="Profil Sayfası Genel Görünüm" />
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil" alt="Profil Detayları ve Aktivite Özeti" />
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil1" alt="Profil Detayları ve Aktivite Özeti" />
+
+---
+
+### ✏️ Profil Güncelleme
+
+Kullanıcılar hesap bilgilerini modern bir modal ekran üzerinden kolayca güncelleyebilmektedir.
+
+### Özellikler
+
+* ✅ Ad ve soyad güncelleme
+* ✅ Kullanıcı adı düzenleme
+* ✅ Ünvan ve şirket bilgileri
+* ✅ Şehir ve lokasyon bilgileri
+* ✅ Web sitesi ekleme
+* ✅ Hakkımda alanı yönetimi
+* ✅ Anlık veri güncelleme işlemleri
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profilg%C3%BCncelle" alt="Profil Düzenleme Modalı" />
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profilg%C3%BCncelle2" alt="Profil Güncelleme Formu" />
+
+
+
