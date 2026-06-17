@@ -278,7 +278,7 @@ Kullanıcıların kişisel bilgilerini görüntüleyebileceği ve hesap durumlar
 <img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil0" alt="Profil Sayfası Genel Görünüm" />
 
 <img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil" alt="Profil Detayları ve Aktivite Özeti" />
-<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil1" alt="Profil Detayları ve Aktivite Özeti" />
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/profil2" alt="Profil Detayları ve Aktivite Özeti" />
 
 ---
 
