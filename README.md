@@ -130,6 +130,27 @@ Kullanıcılar kendilerine gönderilen güvenli bağlantı üzerinden yeni parol
 <img width="1618" height="358" alt="Reset Password" src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-06-18%20021853.png" />
 
 ---
+### 📸 Yönetim Paneli ve İstatistik Yönetimi
+
+Kullanıcılara sistem aktivitelerini tek bir ekran üzerinden takip edebilme imkânı sunan modern bir yönetim paneli geliştirilmiştir. Dashboard ekranı; kullanıcı istatistikleri, mesaj trafiği, bildirimler ve sistem analizlerini gerçek zamanlı olarak görüntüleyebilecek şekilde tasarlanmıştır.
+
+### Özellikler
+
+* ✅ **Dinamik Dashboard Yapısı:** Kullanıcılara sistem durumunu tek ekranda görüntüleme imkânı sunar.
+* ✅ **İstatistik Kartları:** Toplam kullanıcı sayısı, okunmamış mesajlar ve günlük e-posta trafiği gibi veriler anlık olarak gösterilir.
+* ✅ **Mesaj Trafik Analizi:** Grafik destekli analiz ekranı ile günlük ve aylık e-posta hareketleri takip edilebilir.
+* ✅ **Son Gelen Mesajlar:** Kullanıcının son aldığı mesajlar dashboard üzerinden hızlı şekilde görüntülenebilir.
+* ✅ **Akıllı Öneri Sistemi:** Sistem verileri analiz edilerek kullanıcıya özet bilgiler ve öneriler sunulur.
+* ✅ **Sistem Duyuruları:** Yönetici tarafından yayınlanan duyurular dashboard üzerinden kullanıcılara iletilir.
+* ✅ **Responsive Tasarım:** Tüm dashboard bileşenleri farklı ekran boyutlarına uyumlu şekilde çalışır.
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/Ekran%20g%C3%B6r%C3%BCnt%C3%BCs%C3%BC%202026-06-18%20023006.png" alt="Dashboard Genel Görünüm" />
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/dashboard" alt="E-Posta Trafik Analizi ve Son Gelen Mesajlar" />
+
+<img src="https://github.com/dilanderegozu/IdentityEmail/blob/master/IdentityEmail/wwwroot/dashboard2" alt="Sistem Duyuruları ve Akıllı Öneri Kartları" />
+
+---
 ## 🔔 Gerçek Zamanlı Bildirim ve Profil Yönetimi
 
 ### 📸 Bildirim Merkezi ve Kullanıcı İşlemleri
