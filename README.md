@@ -12,7 +12,7 @@ Kullanıcı deneyimini ön planda tutan AJAX tabanlı doğrulamalar ve kurumsal 
 
 
 ### 1. E-Mail Doğrulama Ekranı (Authentication & Security)
-<img src="Screenshots/ekran_dogrulama.png" alt="E-Mail Verification Screen" width="100%"/>
+<img src="Screenshots/Ekran görüntüsü 2026-06-18 015023.png" alt="E-Mail Verification Screen" width="100%"/>
 
 * **Fonksiyon:** Kullanıcı kayıt veya giriş aşamasında güvenlik amacıyla tetiklenen 6 haneli OTP (One-Time Password) doğrulama adımı.
 * **Backend & SQL Mantığı:** * Kullanıcı talep oluşturduğunda backend (`.NET 8.0`) tarafında benzersiz ve süreli (örn. 3-5 dk geçerli) 6 haneli bir kod üretilir.
@@ -23,7 +23,7 @@ Kullanıcı deneyimini ön planda tutan AJAX tabanlı doğrulamalar ve kurumsal 
 ---
 
 ### 2. Ana Kontrol Paneli & Dashboard (Aktivite Özeti)
-<img src="Screenshots/ekran_dashboard.png" alt="Dashboard Screen" width="100%"/>
+<img src="Screenshots/Ekran görüntüsü 2026-06-18 014556.png" alt="Dashboard Screen" width="100%"/>
 
 * **Fonksiyon:** Kullanıcının genel durumunu, profil tamamlanma oranını ve son 12 günün mesaj trafiğini grafiksel olarak gördüğü merkez üssü.
 * **Backend & SQL Mantığı:**
@@ -34,7 +34,7 @@ Kullanıcı deneyimini ön planda tutan AJAX tabanlı doğrulamalar ve kurumsal 
 ---
 
 ### 3. Profil Görünümü ve Düzenleme Modalı (User Profile Management)
-<img src="Screenshots/ekran_profil.png" alt="User Profile Screen" width="100%"/>
+<img src="Screenshots/Ekran görüntüsü 2026-06-18 014549.png" alt="User Profile Screen" width="100%"/>
 
 * **Fonksiyon:** Kullanıcının unvan, şirket, şehir, web sitesi ve "Hakkında" yazısı gibi kişisel bilgilerini listelediği ve modal (açılır pencere) üzerinde güncelleyebildiği alan.
 * **Backend & SQL Mantığı:**
@@ -45,7 +45,7 @@ Kullanıcı deneyimini ön planda tutan AJAX tabanlı doğrulamalar ve kurumsal 
 ---
 
 ### 4. Gelen Kutusu ve Taslaklar Listeleme (Data Table & Filtering)
-<img src="Screenshots/ekran_gelenkutusu.png" alt="Inbox Screen" width="100%"/>
+<img src="Screenshots/Ekran görüntüsü 2026-06-18 014540.png" alt="Inbox Screen" width="100%"/>
 
 * **Fonksiyon:** Kullanıcıya gelen veya kullanıcının yarıda bıraktığı taslak mesajların listelendiği, kategori etiketlerine göre ayrıştırıldığı liste ekranları.
 * **Backend & SQL Mantığı:**
@@ -57,7 +57,7 @@ Kullanıcı deneyimini ön planda tutan AJAX tabanlı doğrulamalar ve kurumsal 
 ---
 
 ### 5. Yeni Mesaj Oluşturma & Gelişmiş Editör (Compose Mail)
-<img src="Screenshots/ekran_editor.png" alt="Compose Mail Screen" width="100%"/>
+<img src="Screenshots/Ekran görüntüsü 2026-06-18 014531.png" alt="Compose Mail Screen" width="100%"/>
 
 * **Fonksiyon:** Alıcı seçimi, kategori belirleme, zengin metin editörü (Rich Text Editor) ile içerik hazırlama ve sürükle-bırak (Drag & Drop) mantığıyla dosya ekleme alanı.
 * **Backend & SQL Mantığı:**
@@ -72,4 +72,4 @@ Kullanıcı deneyimini ön planda tutan AJAX tabanlı doğrulamalar ve kurumsal 
 
 * **Soft Delete Sistemi:** Veritabanında (SQL) verilerin kalıcı olarak silinmesi yerine `IsDeleted` ve `IsSpam` gibi flag'lerle işaretlenerek klasörler arası mantıksal taşınması sağlanır.
 * **Identity Integration:** Her mesaj, klasör ve profil işlemi, o an oturum açmış olan `User.Identity.Name` bilgisine göre backend tarafında sıkı bir filtrelemeden geçirilerek güvenliği sağlanır.
-* **Asenkron Yapı (AJAX):** Sayfa yenilemelerini (No-Reload) engellemek amacıyla form gönderimleri ve filtreleme işlemleri `e-preventDefault();` mimarisiyle tamamen AJAX tabanlı kurgulanmıştır.
+* **Asenkron Yapı (AJAX):** Sayfa yenilemelerini (No-Reload) engellemek amacıyla form gönderimleri ve filtreleme işlemleri `e-preventDefault();` mimarisiyle tamamen AJAX tabanlı kurgulanmıştır.Reload) engellemek amacıyla form gönderimleri ve filtreleme işlemleri `e-preventDefault();` mimarisiyle tamamen AJAX tabanlı kurgulanmıştır.
