@@ -58,7 +58,7 @@ Modern ve kullanıcı dostu kayıt ekranı sayesinde kullanıcılar sisteme hız
 
 ## 📧 2. E-Posta Doğrulama Kodu Gönderimi
 
-Kayıt işlemi tamamlandıktan sonra kullanıcıya özel oluşturulan doğrulama kodu e-posta adresine gönderilir ve hesap doğrulama süreci başlatılır.
+Kayıt işlemi tamamlandıktan sonra kullanıcıya özel oluşturulan doğrulama kodu e-posta adresine gönderilir hesap doğrulama süreci başlatılır.
 
 ### Özellikler
 
